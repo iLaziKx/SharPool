@@ -36,23 +36,27 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.metroTile1 = new MetroFramework.Controls.MetroTile();
             this.gridRecherche = new MetroFramework.Controls.MetroGrid();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tbx_rechercher = new MetroFramework.Controls.MetroTextBox();
             this.bnt_rechercher = new MetroFramework.Controls.MetroTile();
             this.metroTile2 = new MetroFramework.Controls.MetroTile();
             this.sharPoolDataSet = new SharPool.SharPoolDataSet();
             this.entrepriseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.entrepriseTableAdapter = new SharPool.SharPoolDataSetTableAdapters.EntrepriseTableAdapter();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Siret = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Entreprise = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Voir = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Modifier = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Ajouter = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Supprimé = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Voir = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Modifier = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Ajouter = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Supprimé = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gridRecherche)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sharPoolDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.entrepriseBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // metroTile1
@@ -71,6 +75,8 @@
             // 
             // gridRecherche
             // 
+            this.gridRecherche.AllowUserToAddRows = false;
+            this.gridRecherche.AllowUserToDeleteRows = false;
             this.gridRecherche.AllowUserToResizeRows = false;
             this.gridRecherche.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridRecherche.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -121,25 +127,15 @@
             this.gridRecherche.TabIndex = 1;
             this.gridRecherche.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.metroGrid1_CellContentClick);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(23, 26);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(109, 103);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            // 
             // tbx_rechercher
             // 
             // 
             // 
             // 
             this.tbx_rechercher.CustomButton.Image = null;
-            this.tbx_rechercher.CustomButton.Location = new System.Drawing.Point(530, 1);
+            this.tbx_rechercher.CustomButton.Location = new System.Drawing.Point(706, 1);
             this.tbx_rechercher.CustomButton.Name = "";
-            this.tbx_rechercher.CustomButton.Size = new System.Drawing.Size(25, 27);
+            this.tbx_rechercher.CustomButton.Size = new System.Drawing.Size(33, 33);
             this.tbx_rechercher.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.tbx_rechercher.CustomButton.TabIndex = 1;
             this.tbx_rechercher.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -203,6 +199,44 @@
             // 
             this.entrepriseTableAdapter.ClearBeforeFill = true;
             // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "Voir";
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.Width = 117;
+            // 
+            // dataGridViewImageColumn2
+            // 
+            this.dataGridViewImageColumn2.HeaderText = "Modifier";
+            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
+            this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn2.Width = 117;
+            // 
+            // dataGridViewImageColumn3
+            // 
+            this.dataGridViewImageColumn3.HeaderText = "Supprimé";
+            this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
+            this.dataGridViewImageColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn3.Width = 117;
+            // 
+            // dataGridViewImageColumn4
+            // 
+            this.dataGridViewImageColumn4.HeaderText = "Supprimé";
+            this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
+            this.dataGridViewImageColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn4.Width = 117;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(23, 26);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(109, 103);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
             // Siret
             // 
             this.Siret.HeaderText = "Siret";
@@ -218,22 +252,30 @@
             // Voir
             // 
             this.Voir.HeaderText = "Voir";
+            this.Voir.Image = global::SharPool.Properties.Resources.tab_afficher;
             this.Voir.Name = "Voir";
+            this.Voir.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // Modifier
             // 
             this.Modifier.HeaderText = "Modifier";
+            this.Modifier.Image = global::SharPool.Properties.Resources.tab_modifier;
             this.Modifier.Name = "Modifier";
+            this.Modifier.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // Ajouter
             // 
             this.Ajouter.HeaderText = "Ajouter";
+            this.Ajouter.Image = global::SharPool.Properties.Resources.tab_ajouter;
             this.Ajouter.Name = "Ajouter";
+            this.Ajouter.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // Supprimé
             // 
             this.Supprimé.HeaderText = "Supprimé";
+            this.Supprimé.Image = global::SharPool.Properties.Resources.tab_supprimer;
             this.Supprimé.Name = "Supprimé";
+            this.Supprimé.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // Accueil
             // 
@@ -251,9 +293,9 @@
             this.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Right;
             this.Load += new System.EventHandler(this.Accueil_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridRecherche)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sharPoolDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.entrepriseBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -269,11 +311,15 @@
         private SharPoolDataSet sharPoolDataSet;
         private System.Windows.Forms.BindingSource entrepriseBindingSource;
         private SharPoolDataSetTableAdapters.EntrepriseTableAdapter entrepriseTableAdapter;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn3;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Siret;
         private System.Windows.Forms.DataGridViewTextBoxColumn Entreprise;
-        private System.Windows.Forms.DataGridViewButtonColumn Voir;
-        private System.Windows.Forms.DataGridViewButtonColumn Modifier;
-        private System.Windows.Forms.DataGridViewButtonColumn Ajouter;
-        private System.Windows.Forms.DataGridViewButtonColumn Supprimé;
+        private System.Windows.Forms.DataGridViewImageColumn Voir;
+        private System.Windows.Forms.DataGridViewImageColumn Modifier;
+        private System.Windows.Forms.DataGridViewImageColumn Ajouter;
+        private System.Windows.Forms.DataGridViewImageColumn Supprimé;
     }
 }
