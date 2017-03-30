@@ -28,7 +28,7 @@ namespace SharPool.Pages
 
         private void ajoutBtn_Click(object sender, EventArgs e)
         {
-            Entreprise ent = new Entreprise(siretBox.Text, entBox.Text, adresseBox.Text, cpBox.Text, villeBox.Text, mailBox.Text, telBox.Text, tbxCommentaire.Text, false);
+            Entreprise ent = new Entreprise(siretBox.Text, entBox.Text, adresseBox.Text, cpBox.Text, villeBox.Text, tbxCommentaire.Text, false);
             AdoEntreprise.create(ent, "App");
         }
     }

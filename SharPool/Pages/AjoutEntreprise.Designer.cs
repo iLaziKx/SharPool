@@ -40,11 +40,7 @@
             this.cpBox = new MetroFramework.Controls.MetroTextBox();
             this.siretBox = new MetroFramework.Controls.MetroTextBox();
             this.metroLink1 = new MetroFramework.Controls.MetroLink();
-            this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
-            this.mailBox = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel9 = new MetroFramework.Controls.MetroLabel();
-            this.telBox = new MetroFramework.Controls.MetroTextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.ajoutBtn = new MetroFramework.Controls.MetroTile();
             this.tbxCommentaire = new MetroFramework.Controls.MetroTextBox();
@@ -108,7 +104,7 @@
             // 
             // 
             this.entBox.CustomButton.Image = null;
-            this.entBox.CustomButton.Location = new System.Drawing.Point(127, 2);
+            this.entBox.CustomButton.Location = new System.Drawing.Point(175, 2);
             this.entBox.CustomButton.Margin = new System.Windows.Forms.Padding(4);
             this.entBox.CustomButton.Name = "";
             this.entBox.CustomButton.Size = new System.Drawing.Size(23, 23);
@@ -140,7 +136,7 @@
             // 
             // 
             this.adresseBox.CustomButton.Image = null;
-            this.adresseBox.CustomButton.Location = new System.Drawing.Point(127, 2);
+            this.adresseBox.CustomButton.Location = new System.Drawing.Point(175, 2);
             this.adresseBox.CustomButton.Margin = new System.Windows.Forms.Padding(4);
             this.adresseBox.CustomButton.Name = "";
             this.adresseBox.CustomButton.Size = new System.Drawing.Size(23, 23);
@@ -172,7 +168,7 @@
             // 
             // 
             this.villeBox.CustomButton.Image = null;
-            this.villeBox.CustomButton.Location = new System.Drawing.Point(127, 2);
+            this.villeBox.CustomButton.Location = new System.Drawing.Point(175, 2);
             this.villeBox.CustomButton.Margin = new System.Windows.Forms.Padding(4);
             this.villeBox.CustomButton.Name = "";
             this.villeBox.CustomButton.Size = new System.Drawing.Size(23, 23);
@@ -204,7 +200,7 @@
             // 
             // 
             this.cpBox.CustomButton.Image = null;
-            this.cpBox.CustomButton.Location = new System.Drawing.Point(127, 2);
+            this.cpBox.CustomButton.Location = new System.Drawing.Point(175, 2);
             this.cpBox.CustomButton.Margin = new System.Windows.Forms.Padding(4);
             this.cpBox.CustomButton.Name = "";
             this.cpBox.CustomButton.Size = new System.Drawing.Size(23, 23);
@@ -236,7 +232,7 @@
             // 
             // 
             this.siretBox.CustomButton.Image = null;
-            this.siretBox.CustomButton.Location = new System.Drawing.Point(127, 2);
+            this.siretBox.CustomButton.Location = new System.Drawing.Point(175, 2);
             this.siretBox.CustomButton.Margin = new System.Windows.Forms.Padding(4);
             this.siretBox.CustomButton.Name = "";
             this.siretBox.CustomButton.Size = new System.Drawing.Size(23, 23);
@@ -275,48 +271,6 @@
             this.metroLink1.UseSelectable = true;
             this.metroLink1.Click += new System.EventHandler(this.metroLink1_Click);
             // 
-            // metroLabel7
-            // 
-            this.metroLabel7.AutoSize = true;
-            this.metroLabel7.Location = new System.Drawing.Point(574, 129);
-            this.metroLabel7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.metroLabel7.Name = "metroLabel7";
-            this.metroLabel7.Size = new System.Drawing.Size(41, 20);
-            this.metroLabel7.TabIndex = 45;
-            this.metroLabel7.Text = "Mail :";
-            // 
-            // mailBox
-            // 
-            // 
-            // 
-            // 
-            this.mailBox.CustomButton.Image = null;
-            this.mailBox.CustomButton.Location = new System.Drawing.Point(127, 2);
-            this.mailBox.CustomButton.Margin = new System.Windows.Forms.Padding(4);
-            this.mailBox.CustomButton.Name = "";
-            this.mailBox.CustomButton.Size = new System.Drawing.Size(23, 23);
-            this.mailBox.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.mailBox.CustomButton.TabIndex = 1;
-            this.mailBox.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.mailBox.CustomButton.UseSelectable = true;
-            this.mailBox.CustomButton.Visible = false;
-            this.mailBox.Lines = new string[0];
-            this.mailBox.Location = new System.Drawing.Point(669, 124);
-            this.mailBox.Margin = new System.Windows.Forms.Padding(4);
-            this.mailBox.MaxLength = 32767;
-            this.mailBox.Name = "mailBox";
-            this.mailBox.PasswordChar = '\0';
-            this.mailBox.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.mailBox.SelectedText = "";
-            this.mailBox.SelectionLength = 0;
-            this.mailBox.SelectionStart = 0;
-            this.mailBox.ShortcutsEnabled = true;
-            this.mailBox.Size = new System.Drawing.Size(245, 28);
-            this.mailBox.TabIndex = 46;
-            this.mailBox.UseSelectable = true;
-            this.mailBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.mailBox.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            // 
             // metroLabel8
             // 
             this.metroLabel8.AutoSize = true;
@@ -328,48 +282,6 @@
             this.metroLabel8.Size = new System.Drawing.Size(112, 25);
             this.metroLabel8.TabIndex = 47;
             this.metroLabel8.Text = "Entreprise :";
-            // 
-            // metroLabel9
-            // 
-            this.metroLabel9.AutoSize = true;
-            this.metroLabel9.Location = new System.Drawing.Point(574, 187);
-            this.metroLabel9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.metroLabel9.Name = "metroLabel9";
-            this.metroLabel9.Size = new System.Drawing.Size(81, 20);
-            this.metroLabel9.TabIndex = 48;
-            this.metroLabel9.Text = "Téléphone :";
-            // 
-            // telBox
-            // 
-            // 
-            // 
-            // 
-            this.telBox.CustomButton.Image = null;
-            this.telBox.CustomButton.Location = new System.Drawing.Point(127, 2);
-            this.telBox.CustomButton.Margin = new System.Windows.Forms.Padding(4);
-            this.telBox.CustomButton.Name = "";
-            this.telBox.CustomButton.Size = new System.Drawing.Size(23, 23);
-            this.telBox.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.telBox.CustomButton.TabIndex = 1;
-            this.telBox.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.telBox.CustomButton.UseSelectable = true;
-            this.telBox.CustomButton.Visible = false;
-            this.telBox.Lines = new string[0];
-            this.telBox.Location = new System.Drawing.Point(669, 179);
-            this.telBox.Margin = new System.Windows.Forms.Padding(4);
-            this.telBox.MaxLength = 32767;
-            this.telBox.Name = "telBox";
-            this.telBox.PasswordChar = '\0';
-            this.telBox.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.telBox.SelectedText = "";
-            this.telBox.SelectionLength = 0;
-            this.telBox.SelectionStart = 0;
-            this.telBox.ShortcutsEnabled = true;
-            this.telBox.Size = new System.Drawing.Size(245, 28);
-            this.telBox.TabIndex = 49;
-            this.telBox.UseSelectable = true;
-            this.telBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.telBox.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
             // pictureBox1
             // 
@@ -403,17 +315,17 @@
             // 
             // 
             this.tbxCommentaire.CustomButton.Image = null;
-            this.tbxCommentaire.CustomButton.Location = new System.Drawing.Point(244, 2);
+            this.tbxCommentaire.CustomButton.Location = new System.Drawing.Point(146, 2);
             this.tbxCommentaire.CustomButton.Margin = new System.Windows.Forms.Padding(4);
             this.tbxCommentaire.CustomButton.Name = "";
-            this.tbxCommentaire.CustomButton.Size = new System.Drawing.Size(93, 93);
+            this.tbxCommentaire.CustomButton.Size = new System.Drawing.Size(195, 195);
             this.tbxCommentaire.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.tbxCommentaire.CustomButton.TabIndex = 1;
             this.tbxCommentaire.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.tbxCommentaire.CustomButton.UseSelectable = true;
             this.tbxCommentaire.CustomButton.Visible = false;
             this.tbxCommentaire.Lines = new string[0];
-            this.tbxCommentaire.Location = new System.Drawing.Point(574, 287);
+            this.tbxCommentaire.Location = new System.Drawing.Point(574, 185);
             this.tbxCommentaire.Margin = new System.Windows.Forms.Padding(4);
             this.tbxCommentaire.MaxLength = 32767;
             this.tbxCommentaire.Name = "tbxCommentaire";
@@ -423,7 +335,7 @@
             this.tbxCommentaire.SelectionLength = 0;
             this.tbxCommentaire.SelectionStart = 0;
             this.tbxCommentaire.ShortcutsEnabled = true;
-            this.tbxCommentaire.Size = new System.Drawing.Size(340, 98);
+            this.tbxCommentaire.Size = new System.Drawing.Size(344, 200);
             this.tbxCommentaire.TabIndex = 53;
             this.tbxCommentaire.UseSelectable = true;
             this.tbxCommentaire.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -432,7 +344,7 @@
             // metroLabel6
             // 
             this.metroLabel6.AutoSize = true;
-            this.metroLabel6.Location = new System.Drawing.Point(574, 240);
+            this.metroLabel6.Location = new System.Drawing.Point(574, 151);
             this.metroLabel6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.metroLabel6.Name = "metroLabel6";
             this.metroLabel6.Size = new System.Drawing.Size(100, 20);
@@ -448,11 +360,7 @@
             this.Controls.Add(this.metroLabel6);
             this.Controls.Add(this.ajoutBtn);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.telBox);
-            this.Controls.Add(this.metroLabel9);
             this.Controls.Add(this.metroLabel8);
-            this.Controls.Add(this.mailBox);
-            this.Controls.Add(this.metroLabel7);
             this.Controls.Add(this.metroLink1);
             this.Controls.Add(this.siretBox);
             this.Controls.Add(this.cpBox);
@@ -487,11 +395,7 @@
         private MetroFramework.Controls.MetroTextBox cpBox;
         private MetroFramework.Controls.MetroTextBox siretBox;
         private MetroFramework.Controls.MetroLink metroLink1;
-        private MetroFramework.Controls.MetroLabel metroLabel7;
-        private MetroFramework.Controls.MetroTextBox mailBox;
         private MetroFramework.Controls.MetroLabel metroLabel8;
-        private MetroFramework.Controls.MetroLabel metroLabel9;
-        private MetroFramework.Controls.MetroTextBox telBox;
         private System.Windows.Forms.PictureBox pictureBox1;
         private MetroFramework.Controls.MetroTile ajoutBtn;
         private MetroFramework.Controls.MetroTextBox tbxCommentaire;
