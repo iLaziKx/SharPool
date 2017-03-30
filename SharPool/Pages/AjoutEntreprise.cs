@@ -30,6 +30,9 @@ namespace SharPool.Pages
         {
             Entreprise ent = new Entreprise(siretBox.Text, entBox.Text, adresseBox.Text, cpBox.Text, villeBox.Text, tbxCommentaire.Text, false);
             AdoEntreprise.create(ent, "App");
+            Accueil accueil = new Accueil();
+            accueil.Show();
+            this.Close();
         }
     }
 }

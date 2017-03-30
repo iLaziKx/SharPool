@@ -50,7 +50,7 @@ namespace SharPool.Ado
 
                 MySqlDataReader res = cmd.ExecuteReader();
                 res.Read();
-                uneEntreprise = new Entreprise((string)res["numeroSiret"], (string)res["nomEntreprise"], (string)res["adresse"], (string)res["ville"], (string)res["codePostal"], (string)res["commentaire"], (bool)res["entrepriseCreer"]);
+                uneEntreprise = new Entreprise((int)res["idEntreprise"],(string)res["numeroSiret"], (string)res["nomEntreprise"], (string)res["adresse"], (string)res["ville"], (string)res["codePostal"], (string)res["commentaire"], (bool)res["entrepriseCreer"]);
 
                 close();
                 return uneEntreprise;
@@ -69,7 +69,7 @@ namespace SharPool.Ado
                 while (res.Read())
                 {
                     res.Read();
-                    lesEntreprise.Add(new Entreprise((string)res["numeroSiret"], (string)res["nomEntreprise"], (string)res["adresse"], (string)res["ville"], (string)res["codePostal"], (string)res["commentaire"], (bool)res["entrepriseCreer"]));
+                    lesEntreprise.Add(new Entreprise((int)res["idEntreprise"], (string)res["numeroSiret"], (string)res["nomEntreprise"], (string)res["adresse"], (string)res["ville"], (string)res["codePostal"], (string)res["commentaire"], (bool)res["entrepriseCreer"]));
             }
 
                 return lesEntreprise;
@@ -78,7 +78,7 @@ namespace SharPool.Ado
 
         public static List<Entreprise> readAllWs(string connect)
         {
-            List<Entreprise> lesEntreprise = new List<Entreprise>();
+            List<Entreprise> lesEntreprises = new List<Entreprise>();
             open("App");
 
             MySqlCommand cmd = new MySqlCommand();
@@ -89,10 +89,10 @@ namespace SharPool.Ado
             while (res.Read())
             {
                 res.Read();
-                lesEntreprise.Add(new Entreprise((string)res["numeroSiret"], (string)res["nomEntreprise"], (string)res["adresse"], (string)res["ville"], (string)res["codePostal"], (string)res["commentaire"], (bool)res["entrepriseCreer"]));
+                lesEntreprises.Add(new Entreprise((int)res["idEntreprise"], (string)res["numeroSiret"], (string)res["nomEntreprise"], (string)res["adresse"], (string)res["ville"], (string)res["codePostal"], (string)res["commentaire"], (bool)res["entrepriseCreer"]));
             }
 
-            return lesEntreprise;
+            return lesEntreprises;
 
         }
 
@@ -130,6 +130,7 @@ namespace SharPool.Ado
                     cmd.CommandText = "UPDATE Entreprise SET numeroSiret=@numeroSiret,nomEntreprise=@nomEntreprise,adresse=@adresse,codePostal=@codePostal,ville=@ville,commentaire=@commentaire,entrepriseCreer=@entrepriseCreer WHERE idEntreprise=@identreprise";
                     cmd.Prepare();
 
+                    cmd.Parameters.AddWithValue("@idEntreprise", uneEntreprise.IdEntreprise);
                     cmd.Parameters.AddWithValue("@numeroSiret", uneEntreprise.NumeroSiret);
                     cmd.Parameters.AddWithValue("@nomEntreprise", uneEntreprise.NomEntreprise);
                     cmd.Parameters.AddWithValue("@adresse", uneEntreprise.Adresse);
@@ -152,10 +153,9 @@ namespace SharPool.Ado
         {
             try
             {
-                open("App");
-                open("Web");
                 List<Entreprise> lesEntreprises = readAllWs("App");
-                
+                open("App");
+
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
                 foreach (Entreprise uneEntreprise in lesEntreprises)
@@ -165,9 +165,13 @@ namespace SharPool.Ado
                     cmd.Parameters.AddWithValue("@idEntreprise", uneEntreprise.IdEntreprise);
                     cmd.Parameters.AddWithValue("@entrepriseCreer", 1);
                     cmd.ExecuteNonQuery();
-                    create(uneEntreprise, "Web");
                 }
                 close();
+                
+                foreach (Entreprise uneEntreprise in lesEntreprises)
+                {
+                    create(uneEntreprise, "Web");
+                }
             }
             catch (MySqlException ex)
             {

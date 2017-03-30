@@ -18,7 +18,7 @@ namespace SharPool.Ado
 
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
-                cmd.CommandText = "INSERT INTO Contrats(date_debut,date_fin,satisfaction,description_poste,nom_tuteur,tel_tuteur,mail_tuteur,nom_eleve,prenom_eleve,archivage,id_entreprise,id_promotion,id_types) VALUES(@dateDebut,@dateFin,@satisfaction,@descriptionPoste,@nomTuteur,@numéroResponsable,@mailTuteur,@nomEleve,@prenomEleve,@archivage,@idType,@idEntreprise,@idPromotion)";
+                cmd.CommandText = "INSERT INTO Contrat (dateDebut,dateFin,satisfaction,descriptionPoste,nomTuteur,numeroResponsable,mailTuteur,nomEleve,prenomEleve,archivage,typeContrat_idType,entreprise_idEntreprise,promotion_idPromotion) VALUES(@dateDebut,@dateFin,@satisfaction,@descriptionPoste,@nomTuteur,@numéroResponsable,@mailTuteur,@nomEleve,@prenomEleve,@archivage,@idType,@idEntreprise,@idPromotion)";
                 cmd.Prepare();
 
                 cmd.Parameters.AddWithValue("@dateDebut", unContrat.DateDebut);
@@ -136,7 +136,7 @@ namespace SharPool.Ado
                 cmd.CommandText = "UPDATE Contrat SET dateDebut=@dateDebut,dateFin=@dateFin,satisfaction=@satisfaction,descriptionPoste=@descriptionPoste,nomTuteur=@nomTuteur,numéroResponsable=@numéroResponsable,mailTuteur=@mailTuteur,nomEleve=@nomEleve,prenomEleve=@prenomEleve,archivage=@archivage,idType=@idType,idEntreprise=@idEntreprise,idPromotion=@idPromotion WHERE idContrat=@id";
                 cmd.Prepare();
 
-                cmd.Parameters.AddWithValue("@idContrat", unContrat.IdContrat);
+                cmd.Parameters.AddWithValue("@id", unContrat.IdContrat);
                 cmd.Parameters.AddWithValue("@dateDebut", unContrat.DateDebut);
                 cmd.Parameters.AddWithValue("@dateFin", unContrat.DateFin);
                 cmd.Parameters.AddWithValue("@satisfaction", unContrat.Satisfaction);
@@ -167,7 +167,6 @@ namespace SharPool.Ado
             try
             {
                 open("App");
-                open("Web");
                 List<Contrat> lesContrats = readAllWs("App");
 
                 MySqlCommand cmd = new MySqlCommand();
@@ -177,11 +176,17 @@ namespace SharPool.Ado
                     cmd.CommandText = "UPDATE Contrat SET archivage=@archivage WHERE idContrat=@id";
                     cmd.Prepare();
                     cmd.Parameters.AddWithValue("@archivage", 1);
-                    cmd.Parameters.AddWithValue("@idContrat", unContrat.IdContrat);
+                    cmd.Parameters.AddWithValue("@id", unContrat.IdContrat);
                     cmd.ExecuteNonQuery();
-                    create(unContrat, "Web");
                 }
                 close();
+                
+                open("Web");
+                foreach (Contrat unContrat in lesContrats)
+                {
+                    create(unContrat, "Web");
+                }
+                close(); 
             }
             catch (MySqlException ex)
             {
