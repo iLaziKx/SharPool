@@ -14,12 +14,10 @@ namespace SharPool.Classes
         string adresse;
         string codePostal;
         string ville;
-        string mail;
-        string telephoneEntreprise;
         string commentaire;
-        bool entCreer;
+        bool entrepriseCreer;
 
-        public Entreprise(string numeroSiret, string nomEntreprise, string adresse, string codePostal, string ville, string mail, string telephoneEntreprise, string commentaire, bool entCreer)
+        public Entreprise(string numeroSiret, string nomEntreprise, string adresse, string codePostal, string ville, string commentaire, bool entrepriseCreer)
         {
             this.idEntreprise = 0;
             this.numeroSiret = numeroSiret;
@@ -27,10 +25,8 @@ namespace SharPool.Classes
             this.adresse = adresse;
             this.codePostal = codePostal;
             this.ville = ville;
-            this.mail = mail;
-            this.telephoneEntreprise = telephoneEntreprise;
             this.commentaire = commentaire;
-            this.entCreer = entCreer;
+            this.entrepriseCreer = entrepriseCreer;
         }
 
         public int IdEntreprise
@@ -110,32 +106,7 @@ namespace SharPool.Classes
                 ville = value;
             }
         }
-
-        public string Mail
-        {
-            get
-            {
-                return mail;
-            }
-
-            set
-            {
-                mail = value;
-            }
-        }
-
-        public string TelephoneEntreprise
-        {
-            get
-            {
-                return telephoneEntreprise;
-            }
-
-            set
-            {
-                telephoneEntreprise = value;
-            }
-        }
+        
 
         public string Commentaire
         {
@@ -150,16 +121,16 @@ namespace SharPool.Classes
             }
         }
 
-        public bool EntCreer
+        public bool EntrepriseCreer
         {
             get
             {
-                return entCreer;
+                return entrepriseCreer;
             }
 
             set
             {
-                entCreer = value;
+                entrepriseCreer = value;
             }
         }
     }
