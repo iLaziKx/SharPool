@@ -21,7 +21,7 @@ namespace SharPool.Ado
                     conn = new MySqlConnection(cs);
                     conn.Open();
                     Console.WriteLine("SQL : {0}", conn.ServerVersion);
-                    MessageBox.Show("Connection application reussi");
+                    //MessageBox.Show("Connection application reussi");
                 }
                 catch (MySqlException ex)
                 {
@@ -38,7 +38,7 @@ namespace SharPool.Ado
                     conn = new MySqlConnection(cs);
                     conn.Open();
                     Console.WriteLine("SQL : {0}", conn.ServerVersion);
-                    MessageBox.Show("Connection web service reussi");
+                    //MessageBox.Show("Connection web service reussi");
                 }
                 catch (MySqlException ex)
                 {

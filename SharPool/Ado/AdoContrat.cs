@@ -162,20 +162,25 @@ namespace SharPool.Ado
 
         }
 
-        public static void updateWs(Contrat unContrat)
+        public static void update_createWs()
         {
             try
             {
                 open("App");
+                open("Web");
+                List<Contrat> lesContrats = readAllWs("App");
 
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
-                cmd.CommandText = "UPDATE Contrat SET archivage=@archivage WHERE idContrat=@id";
-                cmd.Prepare();
-
-                cmd.Parameters.AddWithValue("@archivage", 1);
-
-                cmd.ExecuteNonQuery();
+                foreach (Contrat unContrat in lesContrats)
+                {
+                    cmd.CommandText = "UPDATE Contrat SET archivage=@archivage WHERE idContrat=@id";
+                    cmd.Prepare();
+                    cmd.Parameters.AddWithValue("@archivage", 1);
+                    cmd.Parameters.AddWithValue("@idContrat", unContrat.IdContrat);
+                    cmd.ExecuteNonQuery();
+                    create(unContrat, "Web");
+                }
                 close();
             }
             catch (MySqlException ex)

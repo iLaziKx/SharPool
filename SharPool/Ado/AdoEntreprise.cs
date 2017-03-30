@@ -19,12 +19,13 @@ namespace SharPool.Ado
 
                     MySqlCommand cmd = new MySqlCommand();
                     cmd.Connection = conn;
-                    cmd.CommandText = "INSERT INTO Entreprise (numeroSiret,nomEntreprise,adresse,ville,commentaire,entrepriseCreer) VALUES (@numeroSiret,@nomEntreprise,@adresse,@ville,@commentaire,@entrepriseCreer)";
+                    cmd.CommandText = "INSERT INTO Entreprise (numeroSiret,nomEntreprise,adresse,codePostal,ville,commentaire,entrepriseCreer) VALUES (@numeroSiret,@nomEntreprise,@adresse,@codePostal,@ville,@commentaire,@entrepriseCreer)";
                     cmd.Prepare();
 
                     cmd.Parameters.AddWithValue("@numeroSiret", uneEntreprise.NumeroSiret);
                     cmd.Parameters.AddWithValue("@nomEntreprise", uneEntreprise.NomEntreprise);
                     cmd.Parameters.AddWithValue("@adresse", uneEntreprise.Adresse);
+                    cmd.Parameters.AddWithValue("@codePostal", uneEntreprise.CodePostal);
                     cmd.Parameters.AddWithValue("@ville", uneEntreprise.Ville);
                     cmd.Parameters.AddWithValue("@commentaire", uneEntreprise.Commentaire);
                     cmd.Parameters.AddWithValue("@entrepriseCreer", uneEntreprise.EntrepriseCreer);
@@ -126,12 +127,13 @@ namespace SharPool.Ado
 
                     MySqlCommand cmd = new MySqlCommand();
                     cmd.Connection = conn;
-                    cmd.CommandText = "UPDATE Entreprise SET numeroSiret=@numeroSiret,nomEntreprise=@nomEntreprise,adresse=@adresse,ville=@ville,commentaire=@commentaire,entrepriseCreer=@entrepriseCreer WHERE idEntreprise=@identreprise";
+                    cmd.CommandText = "UPDATE Entreprise SET numeroSiret=@numeroSiret,nomEntreprise=@nomEntreprise,adresse=@adresse,codePostal=@codePostal,ville=@ville,commentaire=@commentaire,entrepriseCreer=@entrepriseCreer WHERE idEntreprise=@identreprise";
                     cmd.Prepare();
 
                     cmd.Parameters.AddWithValue("@numeroSiret", uneEntreprise.NumeroSiret);
                     cmd.Parameters.AddWithValue("@nomEntreprise", uneEntreprise.NomEntreprise);
                     cmd.Parameters.AddWithValue("@adresse", uneEntreprise.Adresse);
+                    cmd.Parameters.AddWithValue("@codePostal", uneEntreprise.CodePostal);
                     cmd.Parameters.AddWithValue("@ville", uneEntreprise.Ville);
                     cmd.Parameters.AddWithValue("@commentaire", uneEntreprise.Commentaire);
                     cmd.Parameters.AddWithValue("@entrepriseCreer", uneEntreprise.EntrepriseCreer);
@@ -146,25 +148,25 @@ namespace SharPool.Ado
 
             }
 
-        public static void updateWs()
+        public static void update_createWs()
         {
             try
             {
                 open("App");
+                open("Web");
                 List<Entreprise> lesEntreprises = readAllWs("App");
                 
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
                 foreach (Entreprise uneEntreprise in lesEntreprises)
                 {
-                    cmd.CommandText = "UPDATE Entreprise SET entrepriseCreer=@entrepriseCreer WHERE idEntreprise=@identreprise";
+                    cmd.CommandText = "UPDATE Entreprise SET entrepriseCreer=@entrepriseCreer WHERE idEntreprise=@idEntreprise";
                     cmd.Prepare();
-
-                    cmd.Parameters.AddWithValue("@entrepriseCreer", 1);
                     cmd.Parameters.AddWithValue("@idEntreprise", uneEntreprise.IdEntreprise);
+                    cmd.Parameters.AddWithValue("@entrepriseCreer", 1);
                     cmd.ExecuteNonQuery();
+                    create(uneEntreprise, "Web");
                 }
-                
                 close();
             }
             catch (MySqlException ex)

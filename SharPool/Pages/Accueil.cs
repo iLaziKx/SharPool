@@ -29,19 +29,9 @@ namespace SharPool
 
         private void metroTile1_Click(object sender, EventArgs e)
         {
-            List<Entreprise> lesEntreprises = Ado.AdoEntreprise.readAllWs("App");
-            foreach (Entreprise uneEnt in lesEntreprises)
-            {
-                Ado.AdoEntreprise.create(uneEnt, "Web");
-                Ado.AdoEntreprise.updateWs(uneEnt);
-            }
-
-            List<Contrat> lesContrats = Ado.AdoContrat.readAllWs("App");
-            foreach (Contrat unContrat in lesContrats)
-            {
-                Ado.AdoContrat.create(unContrat, "Web");
-                Ado.AdoContrat.updateWs(unContrat);
-            }
+            Ado.AdoEntreprise.update_createWs();
+            Ado.AdoContrat.update_createWs();
+            MessageBox.Show("Archivage reussi !");
         }
 
         private void metroGrid1_CellContentClick(object sender, DataGridViewCellEventArgs e)
