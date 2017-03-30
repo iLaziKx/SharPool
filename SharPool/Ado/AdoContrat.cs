@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 
 namespace SharPool.Ado
 {
@@ -16,7 +16,7 @@ namespace SharPool.Ado
             {
                 open(connect);
 
-                SqlCommand cmd = new SqlCommand();
+                MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
                 cmd.CommandText = "INSERT INTO Contrats(date_debut,date_fin,satisfaction,description_poste,nom_tuteur,tel_tuteur,mail_tuteur,nom_eleve,prenom_eleve,archivage,id_entreprise,id_promotion,id_types) VALUES(@dateDebut,@dateFin,@satisfaction,@descriptionPoste,@nomTuteur,@numéroResponsable,@mailTuteur,@nomEleve,@prenomEleve,@archivage,@idType,@idEntreprise,@idPromotion)";
                 cmd.Prepare();
@@ -39,7 +39,7 @@ namespace SharPool.Ado
                 cmd.ExecuteNonQuery();
                 close();
             }
-            catch (SqlException ex)
+            catch (MySqlException ex)
             {
                 Console.WriteLine("Error: {0}", ex.ToString());
 
@@ -50,11 +50,11 @@ namespace SharPool.Ado
             Contrat unContrat;
             open("App");
 
-            SqlCommand cmd = new SqlCommand();
+            MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = conn;
             cmd.CommandText = "SELECT * FROM Contrat WHERE id= " + unId;
 
-            SqlDataReader res = cmd.ExecuteReader();
+            MySqlDataReader res = cmd.ExecuteReader();
             res.Read();
             unContrat = new Contrat((DateTime)res["dateDebut"], (DateTime)res["dateFin"], (int)res["satisfaction"], (string)res["descriptionPoste"], (string)res["nomTuteur"], (string)res["numeroResponsable"], (string)res["mailTuteur"], (string)res["nomEleve"], (string)res["prenomEleve"], (bool)res["archivage"], (int)res["idType"], (int)res["idEntreprise"], (int)res["idPromotion"]);
 
@@ -67,11 +67,11 @@ namespace SharPool.Ado
             List<Contrat> lesContrats = new List<Contrat>();
             open("App");
 
-            SqlCommand cmd = new SqlCommand();
+            MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = conn;
             cmd.CommandText = "SELECT * FROM Contrat";
 
-            SqlDataReader res = cmd.ExecuteReader();
+            MySqlDataReader res = cmd.ExecuteReader();
             while (res.Read())
             {
                 res.Read();
@@ -87,11 +87,11 @@ namespace SharPool.Ado
             List<Contrat> lesContrats = new List<Contrat>();
             open(connect);
 
-            SqlCommand cmd = new SqlCommand();
+            MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = conn;
             cmd.CommandText = "SELECT * FROM Contrat WHERE archivage = 0";
 
-            SqlDataReader res = cmd.ExecuteReader();
+            MySqlDataReader res = cmd.ExecuteReader();
             while (res.Read())
             {
                 res.Read();
@@ -108,7 +108,7 @@ namespace SharPool.Ado
             {
                 open("App");
 
-                SqlCommand cmd = new SqlCommand();
+                MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
                 cmd.CommandText = "DELETE FROM Contrat WHERE id=@id";
                 cmd.Prepare();
@@ -118,7 +118,7 @@ namespace SharPool.Ado
                 cmd.ExecuteNonQuery();
                 close();
             }
-            catch (SqlException ex)
+            catch (MySqlException ex)
             {
                 Console.WriteLine("Error: {0}", ex.ToString());
 
@@ -131,7 +131,7 @@ namespace SharPool.Ado
             {
                 open("App");
 
-                SqlCommand cmd = new SqlCommand();
+                MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
                 cmd.CommandText = "UPDATE Contrat SET dateDebut=@dateDebut,dateFin=@dateFin,satisfaction=@satisfaction,descriptionPoste=@descriptionPoste,nomTuteur=@nomTuteur,numéroResponsable=@numéroResponsable,mailTuteur=@mailTuteur,nomEleve=@nomEleve,prenomEleve=@prenomEleve,archivage=@archivage,idType=@idType,idEntreprise=@idEntreprise,idPromotion=@idPromotion WHERE idContrat=@id";
                 cmd.Prepare();
@@ -154,7 +154,7 @@ namespace SharPool.Ado
                 cmd.ExecuteNonQuery();
                 close();
             }
-            catch (SqlException ex)
+            catch (MySqlException ex)
             {
                 Console.WriteLine("Error: {0}", ex.ToString());
 
@@ -168,7 +168,7 @@ namespace SharPool.Ado
             {
                 open("App");
 
-                SqlCommand cmd = new SqlCommand();
+                MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
                 cmd.CommandText = "UPDATE Contrat SET archivage=@archivage WHERE idContrat=@id";
                 cmd.Prepare();
@@ -178,7 +178,7 @@ namespace SharPool.Ado
                 cmd.ExecuteNonQuery();
                 close();
             }
-            catch (SqlException ex)
+            catch (MySqlException ex)
             {
                 Console.WriteLine("Error: {0}", ex.ToString());
 

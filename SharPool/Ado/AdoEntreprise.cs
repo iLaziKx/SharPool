@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 using SharPool.Classes;
 
 namespace SharPool.Ado
@@ -16,7 +16,7 @@ namespace SharPool.Ado
                 {
                     open(connect);
 
-                    SqlCommand cmd = new SqlCommand();
+                    MySqlCommand cmd = new MySqlCommand();
                     cmd.Connection = conn;
                     cmd.CommandText = "INSERT INTO Entreprise (identreprise,numeroSiret,nomEntreprise,adresse,ville,mail,telphoneEntreprise,commentaire,entCreer) VALUES (@identreprise,@numeroSiret,@nomEntreprise,@adresse,@ville,@mail,@telphoneEntreprise,@commentaire,@entCreer)";
                     cmd.Prepare();
@@ -33,7 +33,7 @@ namespace SharPool.Ado
                 cmd.ExecuteNonQuery();
                     close();
                 }
-                catch (SqlException ex)
+                catch (MySqlException ex)
                 {
                     Console.WriteLine("Error: {0}", ex.ToString());
 
@@ -44,11 +44,11 @@ namespace SharPool.Ado
                 Entreprise uneEntreprise;
                 open("App");
 
-                SqlCommand cmd = new SqlCommand();
+                MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
                 cmd.CommandText = "SELECT * FROM Entreprise WHERE id= " + unId;
 
-                SqlDataReader res = cmd.ExecuteReader();
+                MySqlDataReader res = cmd.ExecuteReader();
                 res.Read();
                 uneEntreprise = new Entreprise((string)res["numeroSiret"], (string)res["nomEntreprise"], (string)res["adresse"], (string)res["ville"], (string)res["codePostal"], (string)res["mail"], (string)res["telephoneEntreprise"], (string)res["commentaire"], (bool)res["entCreer"]);
 
@@ -61,11 +61,11 @@ namespace SharPool.Ado
                 List<Entreprise> lesEntreprise = new List<Entreprise>();
                 open("App");
 
-                SqlCommand cmd = new SqlCommand();
+                MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
                 cmd.CommandText = "SELECT * FROM Entreprise";
 
-                SqlDataReader res = cmd.ExecuteReader();
+                MySqlDataReader res = cmd.ExecuteReader();
                 while (res.Read())
                 {
                     res.Read();
@@ -81,11 +81,11 @@ namespace SharPool.Ado
             List<Entreprise> lesEntreprise = new List<Entreprise>();
             open("App");
 
-            SqlCommand cmd = new SqlCommand();
+            MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = conn;
             cmd.CommandText = "SELECT * FROM Entreprise WHERE entCreer = 0";
 
-            SqlDataReader res = cmd.ExecuteReader();
+            MySqlDataReader res = cmd.ExecuteReader();
             while (res.Read())
             {
                 res.Read();
@@ -102,7 +102,7 @@ namespace SharPool.Ado
                 {
                     open("App");
 
-                    SqlCommand cmd = new SqlCommand();
+                    MySqlCommand cmd = new MySqlCommand();
                     cmd.Connection = conn;
                     cmd.CommandText = "DELETE FROM Entreprise WHERE id=@id";
                     cmd.Prepare();
@@ -112,7 +112,7 @@ namespace SharPool.Ado
                     cmd.ExecuteNonQuery();
                     close();
                 }
-                catch (SqlException ex)
+                catch (MySqlException ex)
                 {
                     Console.WriteLine("Error: {0}", ex.ToString());
 
@@ -125,7 +125,7 @@ namespace SharPool.Ado
                 {
                     open("App");
 
-                    SqlCommand cmd = new SqlCommand();
+                    MySqlCommand cmd = new MySqlCommand();
                     cmd.Connection = conn;
                     cmd.CommandText = "UPDATE Entreprise SET numeroSiret=@numeroSiret,nomEntreprise=@nomEntreprise,adresse=@adresse,ville=@ville,mail=@mail,telphoneEntreprise=@telphoneEntreprise,commentaire=@commentaire,entCreer=@entCreer WHERE id=@identreprise";
                     cmd.Prepare();
@@ -143,7 +143,7 @@ namespace SharPool.Ado
                     cmd.ExecuteNonQuery();
                     close();
                 }
-                catch (SqlException ex)
+                catch (MySqlException ex)
                 {
                     Console.WriteLine("Error: {0}", ex.ToString());
                 }
@@ -156,7 +156,7 @@ namespace SharPool.Ado
             {
                 open("App");
 
-                SqlCommand cmd = new SqlCommand();
+                MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
                 cmd.CommandText = "UPDATE Entreprise SET entCreer=@entCreer WHERE id=@identreprise";
                 cmd.Prepare();
@@ -166,7 +166,7 @@ namespace SharPool.Ado
                 cmd.ExecuteNonQuery();
                 close();
             }
-            catch (SqlException ex)
+            catch (MySqlException ex)
             {
                 Console.WriteLine("Error: {0}", ex.ToString());
             }
