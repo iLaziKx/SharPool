@@ -16,10 +16,16 @@ namespace SharPool
 {
     public partial class Accueil : MetroFramework.Forms.MetroForm
     {
+        DataTable dtListeEntreprise = AdoEntreprise.dtReadAll();
+
         public Accueil()
         {
             InitializeComponent();
+
+            refreshDTListeEntreprise();
+            refreshGrid(dtListeEntreprise);      //Affichage des entreprises dans le tableau
         }
+        
 
         private void metroTile1_Click(object sender, EventArgs e)
         {
@@ -64,6 +70,19 @@ namespace SharPool
             {
                 DialogResult result = MetroMessageBox.Show(this,"Voulez-vous vraiment supprimé?" , "Confirmation", MessageBoxButtons.YesNo);
             }
+        }
+        private void refreshDTListeEntreprise()
+        {
+            dtListeEntreprise = AdoEntreprise.dtReadAll();
+        }
+        private void refreshGrid(DataTable DataTableForFill)
+        {
+            //Chargement de la liste des entreprises
+            gridRecherche.RowTemplate.MinimumHeight = 35;
+            gridRecherche.AutoGenerateColumns = false;
+            gridRecherche.Columns[0].DataPropertyName = "numeroSiret";
+            gridRecherche.Columns[1].DataPropertyName = "nomEntreprise";
+            gridRecherche.DataSource = DataTableForFill;
         }
 
         private void metroTile2_Click(object sender, EventArgs e)
