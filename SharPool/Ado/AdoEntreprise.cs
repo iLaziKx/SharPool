@@ -19,7 +19,7 @@ namespace SharPool.Ado
 
                     MySqlCommand cmd = new MySqlCommand();
                     cmd.Connection = conn;
-                    cmd.CommandText = "INSERT INTO Entreprise (identreprise,numeroSiret,nomEntreprise,adresse,ville,commentaire,entrepriseCreer) VALUES (@identreprise,@numeroSiret,@nomEntreprise,@adresse,@ville,@commentaire,@entrepriseCreer)";
+                    cmd.CommandText = "INSERT INTO Entreprise (numeroSiret,nomEntreprise,adresse,ville,commentaire,entrepriseCreer) VALUES (@numeroSiret,@nomEntreprise,@adresse,@ville,@commentaire,@entrepriseCreer)";
                     cmd.Prepare();
 
                     cmd.Parameters.AddWithValue("@numeroSiret", uneEntreprise.NumeroSiret);
