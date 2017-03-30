@@ -103,7 +103,7 @@ namespace SharPool.Ado
 
                     MySqlCommand cmd = new MySqlCommand();
                     cmd.Connection = conn;
-                    cmd.CommandText = "DELETE FROM Entreprise WHERE id=@id";
+                    cmd.CommandText = "DELETE FROM Entreprise WHERE idEntreprise=@id";
                     cmd.Prepare();
 
                     cmd.Parameters.AddWithValue("@id", unId);
@@ -126,10 +126,9 @@ namespace SharPool.Ado
 
                     MySqlCommand cmd = new MySqlCommand();
                     cmd.Connection = conn;
-                    cmd.CommandText = "UPDATE Entreprise SET numeroSiret=@numeroSiret,nomEntreprise=@nomEntreprise,adresse=@adresse,ville=@ville,commentaire=@commentaire,entrepriseCreer=@entrepriseCreer WHERE id=@identreprise";
+                    cmd.CommandText = "UPDATE Entreprise SET numeroSiret=@numeroSiret,nomEntreprise=@nomEntreprise,adresse=@adresse,ville=@ville,commentaire=@commentaire,entrepriseCreer=@entrepriseCreer WHERE idEntreprise=@identreprise";
                     cmd.Prepare();
 
-                    cmd.Parameters.AddWithValue("@identreprise", uneEntreprise.IdEntreprise);
                     cmd.Parameters.AddWithValue("@numeroSiret", uneEntreprise.NumeroSiret);
                     cmd.Parameters.AddWithValue("@nomEntreprise", uneEntreprise.NomEntreprise);
                     cmd.Parameters.AddWithValue("@adresse", uneEntreprise.Adresse);
@@ -147,20 +146,25 @@ namespace SharPool.Ado
 
             }
 
-        public static void updateWs(Entreprise uneEntreprise)
+        public static void updateWs()
         {
             try
             {
                 open("App");
-
+                List<Entreprise> lesEntreprises = readAllWs("App");
+                
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
-                cmd.CommandText = "UPDATE Entreprise SET entrepriseCreer=@entrepriseCreer WHERE id=@identreprise";
-                cmd.Prepare();
+                foreach (Entreprise uneEntreprise in lesEntreprises)
+                {
+                    cmd.CommandText = "UPDATE Entreprise SET entrepriseCreer=@entrepriseCreer WHERE idEntreprise=@identreprise";
+                    cmd.Prepare();
 
-                cmd.Parameters.AddWithValue("@entrepriseCreer", 1);
-
-                cmd.ExecuteNonQuery();
+                    cmd.Parameters.AddWithValue("@entrepriseCreer", 1);
+                    cmd.Parameters.AddWithValue("@idEntreprise", uneEntreprise.IdEntreprise);
+                    cmd.ExecuteNonQuery();
+                }
+                
                 close();
             }
             catch (MySqlException ex)
