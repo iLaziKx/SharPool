@@ -154,16 +154,16 @@ namespace SharPool.Ado
             try
             {
                 List<Entreprise> lesEntreprises = readAllWs("App");
-                open("App");
 
-                MySqlCommand cmd = new MySqlCommand();
-                cmd.Connection = conn;
+                
                 foreach (Entreprise uneEntreprise in lesEntreprises)
                 {
+                    MySqlCommand cmd = new MySqlCommand();
+                    cmd.Connection = conn;
                     cmd.CommandText = "UPDATE Entreprise SET entrepriseCreer=@entrepriseCreer WHERE idEntreprise=@idEntreprise";
                     cmd.Prepare();
-                    cmd.Parameters.AddWithValue("@idEntreprise", uneEntreprise.IdEntreprise);
                     cmd.Parameters.AddWithValue("@entrepriseCreer", 1);
+                    cmd.Parameters.AddWithValue("@idEntreprise", uneEntreprise.IdEntreprise);
                     cmd.ExecuteNonQuery();
                 }
                 close();
