@@ -48,25 +48,25 @@ namespace SharPool
         {
             var senderGrid = (DataGridView)sender;
 
-            if (e.ColumnIndex == senderGrid.Columns[1].Index && e.RowIndex >= 0)
+            if (e.ColumnIndex == senderGrid.Columns[2].Index && e.RowIndex >= 0)
             {
                 Affichage affichage = new Affichage();
                 affichage.Show();
                 this.Close();
             }                
-            else if (e.ColumnIndex == senderGrid.Columns[2].Index && e.RowIndex >= 0)
+            else if (e.ColumnIndex == senderGrid.Columns[3].Index && e.RowIndex >= 0)
             {
                 Modifier modifier = new Modifier();
                 modifier.Show();
                 this.Close();
             }
-            else if (e.ColumnIndex == senderGrid.Columns[3].Index && e.RowIndex >= 0)
+            else if (e.ColumnIndex == senderGrid.Columns[4].Index && e.RowIndex >= 0)
             {
                 AjoutContrat ajoutContrat = new AjoutContrat();
                 ajoutContrat.Show();
                 this.Close();
             }
-            else if (e.ColumnIndex == senderGrid.Columns[4].Index && e.RowIndex >= 0)
+            else if (e.ColumnIndex == senderGrid.Columns[5].Index && e.RowIndex >= 0)
             {
                 DialogResult result = MetroMessageBox.Show(this,"Voulez-vous vraiment supprimé?" , "Confirmation", MessageBoxButtons.YesNo);
             }
