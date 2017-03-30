@@ -378,7 +378,7 @@
             // metroLabel5
             // 
             this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(99, 185);
+            this.metroLabel5.Location = new System.Drawing.Point(91, 183);
             this.metroLabel5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.metroLabel5.Name = "metroLabel5";
             this.metroLabel5.Size = new System.Drawing.Size(99, 20);
@@ -388,7 +388,7 @@
             // metroLabel4
             // 
             this.metroLabel4.AutoSize = true;
-            this.metroLabel4.Location = new System.Drawing.Point(99, 360);
+            this.metroLabel4.Location = new System.Drawing.Point(91, 360);
             this.metroLabel4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(89, 20);
@@ -398,7 +398,7 @@
             // metroLabel3
             // 
             this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(99, 421);
+            this.metroLabel3.Location = new System.Drawing.Point(91, 421);
             this.metroLabel3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(42, 20);
@@ -408,7 +408,7 @@
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(99, 301);
+            this.metroLabel2.Location = new System.Drawing.Point(91, 301);
             this.metroLabel2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(66, 20);
@@ -418,7 +418,7 @@
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(99, 240);
+            this.metroLabel1.Location = new System.Drawing.Point(91, 240);
             this.metroLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.metroLabel1.Name = "metroLabel1";
             this.metroLabel1.Size = new System.Drawing.Size(79, 20);
@@ -428,10 +428,10 @@
             // historiqueBtn
             // 
             this.historiqueBtn.ActiveControl = null;
-            this.historiqueBtn.Location = new System.Drawing.Point(301, 500);
+            this.historiqueBtn.Location = new System.Drawing.Point(266, 500);
             this.historiqueBtn.Margin = new System.Windows.Forms.Padding(4);
             this.historiqueBtn.Name = "historiqueBtn";
-            this.historiqueBtn.Size = new System.Drawing.Size(242, 64);
+            this.historiqueBtn.Size = new System.Drawing.Size(277, 64);
             this.historiqueBtn.TabIndex = 73;
             this.historiqueBtn.Text = "Historique des contrats";
             this.historiqueBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
