@@ -38,7 +38,7 @@ namespace SharPool
                 Credentials = new NetworkCredential("ppesharpool@gmail.com", "PasteurMont39"),
                 EnableSsl = true
             };
-            client.Send("ppesharpool@gmail.com", "restempsplein@gmail.com,samuel.chatelet@gmail.com ", "ARCHIVAGE", "ARCHIVAGE DISPONIBLE");
+            client.Send("ppesharpool@gmail.com", "restempsplein@gmail.com ", "ARCHIVAGE", "ARCHIVAGE DISPONIBLE");
            
             MessageBox.Show("Archivage reussi !");
         }
