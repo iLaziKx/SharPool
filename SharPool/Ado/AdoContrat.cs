@@ -1,0 +1,189 @@
+﻿using SharPool.Classes;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.SqlClient;
+
+namespace SharPool.Ado
+{
+    class AdoContrat : Ado
+    {
+        public static void create(Contrat unContrat, string connect)
+        {
+            try
+            {
+                open(connect);
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "INSERT INTO Contrats(date_debut,date_fin,satisfaction,description_poste,nom_tuteur,tel_tuteur,mail_tuteur,nom_eleve,prenom_eleve,archivage,id_entreprise,id_promotion,id_types) VALUES(@dateDebut,@dateFin,@satisfaction,@descriptionPoste,@nomTuteur,@numéroResponsable,@mailTuteur,@nomEleve,@prenomEleve,@archivage,@idType,@idEntreprise,@idPromotion)";
+                cmd.Prepare();
+
+                cmd.Parameters.AddWithValue("@dateDebut", unContrat.DateDebut);
+                cmd.Parameters.AddWithValue("@dateFin", unContrat.DateFin);
+                cmd.Parameters.AddWithValue("@satisfaction", unContrat.Satisfaction);
+                cmd.Parameters.AddWithValue("@descriptionPoste", unContrat.DescriptionPoste);
+                cmd.Parameters.AddWithValue("@nomTuteur", unContrat.NomTuteur);
+                cmd.Parameters.AddWithValue("@numéroResponsable", unContrat.NumeroResponsable);
+                cmd.Parameters.AddWithValue("@mailTuteur", unContrat.MailTuteur);
+                cmd.Parameters.AddWithValue("@nomEleve", unContrat.NomEleve);
+                cmd.Parameters.AddWithValue("@prenomEleve", unContrat.PrenomEleve);
+                cmd.Parameters.AddWithValue("@archivage", unContrat.Archivage);
+                cmd.Parameters.AddWithValue("@idType", unContrat.IdType);
+                cmd.Parameters.AddWithValue("@idEntreprise", unContrat.IdEntreprise);
+                cmd.Parameters.AddWithValue("@idPromotion", unContrat.IdPromotion);
+
+
+                cmd.ExecuteNonQuery();
+                close();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error: {0}", ex.ToString());
+
+            }
+        }
+        public static Contrat readOne(int unId)
+        {
+            Contrat unContrat;
+            open("App");
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandText = "SELECT * FROM Contrat WHERE id= " + unId;
+
+            SqlDataReader res = cmd.ExecuteReader();
+            res.Read();
+            unContrat = new Contrat((DateTime)res["dateDebut"], (DateTime)res["dateFin"], (int)res["satisfaction"], (string)res["descriptionPoste"], (string)res["nomTuteur"], (string)res["numeroResponsable"], (string)res["mailTuteur"], (string)res["nomEleve"], (string)res["prenomEleve"], (bool)res["archivage"], (int)res["idType"], (int)res["idEntreprise"], (int)res["idPromotion"]);
+
+            close();
+            return unContrat;
+
+        }
+        public static List<Contrat> readAll()
+        {
+            List<Contrat> lesContrats = new List<Contrat>();
+            open("App");
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandText = "SELECT * FROM Contrat";
+
+            SqlDataReader res = cmd.ExecuteReader();
+            while (res.Read())
+            {
+                res.Read();
+                lesContrats.Add(new Contrat((DateTime)res["dateDebut"], (DateTime)res["dateFin"], (int)res["satisfaction"], (string)res["descriptionPoste"], (string)res["nomTuteur"], (string)res["numeroResponsable"], (string)res["mailTuteur"], (string)res["nomEleve"], (string)res["prenomEleve"], (bool)res["archivage"], (int)res["idType"], (int)res["idEntreprise"], (int)res["idPromotion"]));
+            }
+
+            return lesContrats;
+
+        }
+
+        public static List<Contrat> readAllWs(string connect)
+        {
+            List<Contrat> lesContrats = new List<Contrat>();
+            open(connect);
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandText = "SELECT * FROM Contrat WHERE archivage = 0";
+
+            SqlDataReader res = cmd.ExecuteReader();
+            while (res.Read())
+            {
+                res.Read();
+                lesContrats.Add(new Contrat((DateTime)res["dateDebut"], (DateTime)res["dateFin"], (int)res["satisfaction"], (string)res["descriptionPoste"], (string)res["nomTuteur"], (string)res["numeroResponsable"], (string)res["mailTuteur"], (string)res["nomEleve"], (string)res["prenomEleve"], (bool)res["archivage"], (int)res["idType"], (int)res["idEntreprise"], (int)res["idPromotion"]));
+            }
+
+            return lesContrats;
+
+        }
+
+        public static void delete(int unId)
+        {
+            try
+            {
+                open("App");
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "DELETE FROM Contrat WHERE id=@id";
+                cmd.Prepare();
+
+                cmd.Parameters.AddWithValue("@id", unId);
+
+                cmd.ExecuteNonQuery();
+                close();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error: {0}", ex.ToString());
+
+            }
+        }
+
+        public static void update(Contrat unContrat)
+        {
+            try
+            {
+                open("App");
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "UPDATE Contrat SET dateDebut=@dateDebut,dateFin=@dateFin,satisfaction=@satisfaction,descriptionPoste=@descriptionPoste,nomTuteur=@nomTuteur,numéroResponsable=@numéroResponsable,mailTuteur=@mailTuteur,nomEleve=@nomEleve,prenomEleve=@prenomEleve,archivage=@archivage,idType=@idType,idEntreprise=@idEntreprise,idPromotion=@idPromotion WHERE idContrat=@id";
+                cmd.Prepare();
+
+                cmd.Parameters.AddWithValue("@idContrat", unContrat.IdContrat);
+                cmd.Parameters.AddWithValue("@dateDebut", unContrat.DateDebut);
+                cmd.Parameters.AddWithValue("@dateFin", unContrat.DateFin);
+                cmd.Parameters.AddWithValue("@satisfaction", unContrat.Satisfaction);
+                cmd.Parameters.AddWithValue("@descriptionPoste", unContrat.DescriptionPoste);
+                cmd.Parameters.AddWithValue("@nomTuteur", unContrat.NomTuteur);
+                cmd.Parameters.AddWithValue("@numéroResponsable", unContrat.NumeroResponsable);
+                cmd.Parameters.AddWithValue("@mailTuteur", unContrat.MailTuteur);
+                cmd.Parameters.AddWithValue("@nomEleve", unContrat.NomEleve);
+                cmd.Parameters.AddWithValue("@prenomEleve", unContrat.PrenomEleve);
+                cmd.Parameters.AddWithValue("@archivage", unContrat.Archivage);
+                cmd.Parameters.AddWithValue("@idType", unContrat.IdType);
+                cmd.Parameters.AddWithValue("@idEntreprise", unContrat.IdEntreprise);
+                cmd.Parameters.AddWithValue("@idPromotion", unContrat.IdPromotion);
+
+                cmd.ExecuteNonQuery();
+                close();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error: {0}", ex.ToString());
+
+            }
+
+        }
+
+        public static void updateWs(Contrat unContrat)
+        {
+            try
+            {
+                open("App");
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "UPDATE Contrat SET archivage=@archivage WHERE idContrat=@id";
+                cmd.Prepare();
+
+                cmd.Parameters.AddWithValue("@archivage", 1);
+
+                cmd.ExecuteNonQuery();
+                close();
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error: {0}", ex.ToString());
+
+            }
+
+        }
+    }
+}
