@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using SharPool.Classes;
+using System.Data;
 
 namespace SharPool.Ado
 {
@@ -167,6 +168,32 @@ namespace SharPool.Ado
                 Console.WriteLine("Error: {0}", ex.ToString());
             }
 
+        }
+        public static DataTable dtReadAll()
+        {
+            DataTable dtEntreprise = new DataTable();
+
+            try
+            {
+                open("App");
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "SELECT * FROM Entreprise";
+
+                MySqlDataReader res = cmd.ExecuteReader();
+
+                dtEntreprise.Load(res);
+
+                close();
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine("Error: {0}", ex.ToString());
+
+                return dtEntreprise;
+            }
+
+            return dtEntreprise;
         }
     }
 }
