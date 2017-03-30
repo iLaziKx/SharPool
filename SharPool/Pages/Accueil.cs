@@ -7,6 +7,8 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Net.Mail;
+using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SharPool.Classes;
@@ -31,6 +33,13 @@ namespace SharPool
         {
             Ado.AdoEntreprise.update_createWs();
             Ado.AdoContrat.update_createWs();
+            var client = new SmtpClient("smtp.gmail.com", 587)
+            {
+                Credentials = new NetworkCredential("ppesharpool@gmail.com", "PasteurMont39"),
+                EnableSsl = true
+            };
+            client.Send("ppesharpool@gmail.com", "restempsplein@gmail.com,samuel.chatelet@gmail.com ", "ARCHIVAGE", "ARCHIVAGE DISPONIBLE");
+           
             MessageBox.Show("Archivage reussi !");
         }
 
