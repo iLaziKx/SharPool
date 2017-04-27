@@ -74,10 +74,9 @@ namespace SharPool.Ado
             MySqlDataReader res = cmd.ExecuteReader();
             while (res.Read())
             {
-                res.Read();
                 lesContrats.Add(new Contrat((DateTime)res["dateDebut"], (DateTime)res["dateFin"], (int)res["satisfaction"], (string)res["descriptionPoste"], (string)res["nomTuteur"], (string)res["numeroResponsable"], (string)res["mailTuteur"], (string)res["nomEleve"], (string)res["prenomEleve"], (bool)res["archivage"], (int)res["idType"], (int)res["idEntreprise"], (int)res["idPromotion"]));
             }
-
+            close();
             return lesContrats;
 
         }
@@ -94,10 +93,9 @@ namespace SharPool.Ado
             MySqlDataReader res = cmd.ExecuteReader();
             while (res.Read())
             {
-                res.Read();
                 lesContrats.Add(new Contrat((DateTime)res["dateDebut"], (DateTime)res["dateFin"], (int)res["satisfaction"], (string)res["descriptionPoste"], (string)res["nomTuteur"], (string)res["numeroResponsable"], (string)res["mailTuteur"], (string)res["nomEleve"], (string)res["prenomEleve"], (bool)res["archivage"], (int)res["idType"], (int)res["idEntreprise"], (int)res["idPromotion"]));
             }
-
+            close();
             return lesContrats;
 
         }
@@ -166,27 +164,25 @@ namespace SharPool.Ado
         {
             try
             {
-                open("App");
                 List<Contrat> lesContrats = readAllWs("App");
 
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
                 foreach (Contrat unContrat in lesContrats)
                 {
+                    open("App");
                     cmd.CommandText = "UPDATE Contrat SET archivage=@archivage WHERE idContrat=@id";
                     cmd.Prepare();
                     cmd.Parameters.AddWithValue("@archivage", 1);
                     cmd.Parameters.AddWithValue("@id", unContrat.IdContrat);
                     cmd.ExecuteNonQuery();
+                    close();
                 }
-                close();
                 
-                open("Web");
                 foreach (Contrat unContrat in lesContrats)
                 {
                     create(unContrat, "Web");
                 }
-                close(); 
             }
             catch (MySqlException ex)
             {
