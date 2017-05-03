@@ -30,7 +30,7 @@ namespace SharPool.Ado
                     cmd.Parameters.AddWithValue("@commentaire", uneEntreprise.Commentaire);
                     cmd.Parameters.AddWithValue("@entrepriseCreer", uneEntreprise.EntrepriseCreer);
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
                     close();
                 }
                 catch (MySqlException ex)
@@ -50,7 +50,7 @@ namespace SharPool.Ado
 
                 MySqlDataReader res = cmd.ExecuteReader();
                 
-                uneEntreprise = new Entreprise((int)res["idEntreprise"],(string)res["numeroSiret"], (string)res["nomEntreprise"], (string)res["adresse"], (string)res["ville"], (string)res["codePostal"], (string)res["commentaire"], (bool)res["entrepriseCreer"]);
+                uneEntreprise = new Entreprise((int)res["idEntreprise"],(string)res["numeroSiret"], (string)res["nomEntreprise"], (string)res["adresse"], (string)res["codePostal"], (string)res["ville"],  (string)res["commentaire"], (bool)res["entrepriseCreer"]);
 
                 close();
                 return uneEntreprise;
@@ -63,16 +63,16 @@ namespace SharPool.Ado
 
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
-                cmd.CommandText = "SELECT * FROM Entreprise";
+                cmd.CommandText = "SELECT * FROM entreprise";
 
                 MySqlDataReader res = cmd.ExecuteReader();
                 while (res.Read())
                 {
                     
-                    lesEntreprise.Add(new Entreprise((int)res["idEntreprise"], (string)res["numeroSiret"], (string)res["nomEntreprise"], (string)res["adresse"], (string)res["ville"], (string)res["codePostal"], (string)res["commentaire"], (bool)res["entrepriseCreer"]));
-            }
-            close();
-            return lesEntreprise;
+                    lesEntreprise.Add(new Entreprise((int)res["idEntreprise"], (string)res["numeroSiret"], (string)res["nomEntreprise"], (string)res["adresse"], (string)res["codePostal"], (string)res["ville"], (string)res["commentaire"], (bool)res["entrepriseCreer"]));
+                }
+                close();
+                return lesEntreprise;
 
             }
 
@@ -88,7 +88,7 @@ namespace SharPool.Ado
             MySqlDataReader res = cmd.ExecuteReader();
             while (res.Read())
             {
-                lesEntreprises.Add(new Entreprise((int)res["idEntreprise"], (string)res["numeroSiret"], (string)res["nomEntreprise"], (string)res["adresse"], (string)res["ville"], (string)res["codePostal"], (string)res["commentaire"], (bool)res["entrepriseCreer"]));
+                lesEntreprises.Add(new Entreprise((int)res["idEntreprise"], (string)res["numeroSiret"], (string)res["nomEntreprise"], (string)res["adresse"], (string)res["codePostal"], (string)res["ville"], (string)res["commentaire"], (bool)res["entrepriseCreer"]));
             }
             close();
             return lesEntreprises;
