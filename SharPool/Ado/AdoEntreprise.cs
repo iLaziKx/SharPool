@@ -46,7 +46,7 @@ namespace SharPool.Ado
 
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
-                cmd.CommandText = "SELECT * FROM Entreprise WHERE id= " + unId;
+                cmd.CommandText = "SELECT * FROM entreprise WHERE idEntreprise= " + unId;
 
                 MySqlDataReader res = cmd.ExecuteReader();
                 
@@ -88,7 +88,6 @@ namespace SharPool.Ado
             MySqlDataReader res = cmd.ExecuteReader();
             while (res.Read())
             {
-                res.Read();
                 lesEntreprises.Add(new Entreprise((int)res["idEntreprise"], (string)res["numeroSiret"], (string)res["nomEntreprise"], (string)res["adresse"], (string)res["ville"], (string)res["codePostal"], (string)res["commentaire"], (bool)res["entrepriseCreer"]));
             }
             close();
@@ -154,14 +153,16 @@ namespace SharPool.Ado
             try
             {
                 List<Entreprise> lesEntreprises = readAllWs("App");
-                open("App");
 
-                MySqlCommand cmd = new MySqlCommand();
-                cmd.Connection = conn;
+                
                 foreach (Entreprise uneEntreprise in lesEntreprises)
                 {
+                    open("App");
+                    MySqlCommand cmd = new MySqlCommand();
+                    cmd.Connection = conn;
                     cmd.CommandText = "UPDATE Entreprise SET entrepriseCreer=@entrepriseCreer WHERE idEntreprise=@idEntreprise";
                     cmd.Prepare();
+                    cmd.Parameters.AddWithValue("@entrepriseCreer", true);
                     cmd.Parameters.AddWithValue("@idEntreprise", uneEntreprise.IdEntreprise);
                     cmd.ExecuteNonQuery();
                     close();

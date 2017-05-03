@@ -23,9 +23,26 @@ namespace SharPool.Classes
         int id_promotion;
         int id_types;
 
+        public Contrat(int id_contrat, DateTime dateDebut, DateTime dateFin, int satisfaction, string descriptionPoste, string nomTuteur, string numeroResponsable, string mailTuteur, string nomEleve, string prenomEleve, bool archivage, int idType, int idEntreprise, int idPromotion)
+        {
+            this.id_contrat = id_contrat;
+            this.date_debut = dateDebut;
+            this.date_fin = dateFin;
+            this.satisfaction = satisfaction;
+            this.descrption = descriptionPoste;
+            this.nom_tuteur = nomTuteur;
+            this.tel_tuteur = numeroResponsable;
+            this.mail_tuteur = mailTuteur;
+            this.nom_eleve = nomEleve;
+            this.prenom_eleve = prenomEleve;
+            this.archivage = archivage;
+            this.id_entreprise = idType;
+            this.id_promotion = idEntreprise;
+            this.id_types = idPromotion;
+        }
+
         public Contrat(DateTime dateDebut, DateTime dateFin, int satisfaction, string descriptionPoste, string nomTuteur, string numeroResponsable, string mailTuteur, string nomEleve, string prenomEleve, bool archivage, int idType, int idEntreprise, int idPromotion)
         {
-            this.id_contrat = 0;
             this.date_debut = dateDebut;
             this.date_fin = dateFin;
             this.satisfaction = satisfaction;
