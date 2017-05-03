@@ -18,7 +18,7 @@ namespace SharPool.Ado
 
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
-                cmd.CommandText = "INSERT INTO Contrat (dateDebut,dateFin,satisfaction,descriptionPoste,nomTuteur,numeroResponsable,mailTuteur,nomEleve,prenomEleve,archivage,typeContrat_idType,entreprise_idEntreprise,promotion_idPromotion) VALUES(@dateDebut,@dateFin,@satisfaction,@descriptionPoste,@nomTuteur,@numéroResponsable,@mailTuteur,@nomEleve,@prenomEleve,@archivage,@idType,@idEntreprise,@idPromotion)";
+                cmd.CommandText = "INSERT INTO contrat (dateDebut,dateFin,satisfaction,descriptionPoste,nomTuteur,numeroResponsable,mailTuteur,nomEleve,prenomEleve,archivage,typeContrat_idType,entreprise_idEntreprise,promotion_idPromotion) VALUES(@dateDebut,@dateFin,@satisfaction,@descriptionPoste,@nomTuteur,@numéroResponsable,@mailTuteur,@nomEleve,@prenomEleve,@archivage,@idType,@idEntreprise,@idPromotion)";
                 cmd.Prepare();
 
                 cmd.Parameters.AddWithValue("@dateDebut", unContrat.DateDebut);
@@ -52,7 +52,7 @@ namespace SharPool.Ado
 
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = conn;
-            cmd.CommandText = "SELECT * FROM Contrat WHERE id= " + unId;
+            cmd.CommandText = "SELECT * FROM contrat WHERE id= " + unId;
 
             MySqlDataReader res = cmd.ExecuteReader();
             res.Read();
@@ -69,7 +69,7 @@ namespace SharPool.Ado
 
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = conn;
-            cmd.CommandText = "SELECT * FROM Contrat";
+            cmd.CommandText = "SELECT * FROM contrat";
 
             MySqlDataReader res = cmd.ExecuteReader();
             while (res.Read())
@@ -88,7 +88,7 @@ namespace SharPool.Ado
 
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = conn;
-            cmd.CommandText = "SELECT * FROM Contrat WHERE archivage = 0";
+            cmd.CommandText = "SELECT * FROM contrat WHERE archivage = 0";
 
             MySqlDataReader res = cmd.ExecuteReader();
             while (res.Read())
@@ -108,7 +108,7 @@ namespace SharPool.Ado
 
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
-                cmd.CommandText = "DELETE FROM Contrat WHERE id=@id";
+                cmd.CommandText = "DELETE FROM contrat WHERE id=@id";
                 cmd.Prepare();
 
                 cmd.Parameters.AddWithValue("@id", unId);
@@ -131,7 +131,7 @@ namespace SharPool.Ado
 
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
-                cmd.CommandText = "UPDATE Contrat SET dateDebut=@dateDebut,dateFin=@dateFin,satisfaction=@satisfaction,descriptionPoste=@descriptionPoste,nomTuteur=@nomTuteur,numéroResponsable=@numéroResponsable,mailTuteur=@mailTuteur,nomEleve=@nomEleve,prenomEleve=@prenomEleve,archivage=@archivage,idType=@idType,idEntreprise=@idEntreprise,idPromotion=@idPromotion WHERE idContrat=@id";
+                cmd.CommandText = "UPDATE contrat SET dateDebut=@dateDebut,dateFin=@dateFin,satisfaction=@satisfaction,descriptionPoste=@descriptionPoste,nomTuteur=@nomTuteur,numéroResponsable=@numéroResponsable,mailTuteur=@mailTuteur,nomEleve=@nomEleve,prenomEleve=@prenomEleve,archivage=@archivage,idType=@idType,idEntreprise=@idEntreprise,idPromotion=@idPromotion WHERE idContrat=@id";
                 cmd.Prepare();
 
                 cmd.Parameters.AddWithValue("@id", unContrat.IdContrat);
@@ -171,7 +171,7 @@ namespace SharPool.Ado
                     open("App");
                     MySqlCommand cmd = new MySqlCommand();
                     cmd.Connection = conn;
-                    cmd.CommandText = "UPDATE Contrat SET archivage=@archivage WHERE idContrat=@idContrat";
+                    cmd.CommandText = "UPDATE contrat SET archivage=@archivage WHERE idContrat=@idContrat";
                     cmd.Prepare();
                     cmd.Parameters.AddWithValue("@archivage", true);
                     cmd.Parameters.AddWithValue("@idContrat", unContrat.IdContrat);
