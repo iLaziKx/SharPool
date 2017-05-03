@@ -21,6 +21,14 @@ namespace SharPool
         {
             InitializeComponent();
             laEntreprise = AdoEntreprise.readOne(Convert.ToInt32(idEntreprise));
+
+            siretLabel.Text = laEntreprise.NumeroSiret;
+            entLabel.Text = laEntreprise.NomEntreprise;
+            adresseLabel.Text = laEntreprise.Adresse;
+            cpLabel.Text = laEntreprise.CodePostal;
+            villeLabel.Text = laEntreprise.Ville;
+            comLabel.Text = laEntreprise.Commentaire;
+
         }
 
         private void metroLink1_Click(object sender, EventArgs e)
@@ -39,12 +47,9 @@ namespace SharPool
 
         private void newContratBtn_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void siretBox_Click(object sender, EventArgs e)
-        {
-
+            AjoutContrat ajout = new AjoutContrat(laEntreprise.IdEntreprise.ToString());
+            ajout.Show();
+            this.Close();
         }
     }
 }

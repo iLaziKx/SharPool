@@ -32,10 +32,17 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Accueil));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Accueil));
             this.metroTile1 = new MetroFramework.Controls.MetroTile();
             this.gridRecherche = new MetroFramework.Controls.MetroGrid();
+            this.Siret = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Entreprise = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Voir = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Modifier = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Ajouter = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Supprimé = new System.Windows.Forms.DataGridViewImageColumn();
+            this.idEntreprise = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbx_rechercher = new MetroFramework.Controls.MetroTextBox();
             this.bnt_rechercher = new MetroFramework.Controls.MetroTile();
             this.metroTile2 = new MetroFramework.Controls.MetroTile();
@@ -47,13 +54,7 @@
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.Siret = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Entreprise = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Voir = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Modifier = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Ajouter = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Supprimé = new System.Windows.Forms.DataGridViewImageColumn();
-            this.idEntreprise = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.metroTile3 = new MetroFramework.Controls.MetroTile();
             ((System.ComponentModel.ISupportInitialize)(this.gridRecherche)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sharPoolDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.entrepriseBindingSource)).BeginInit();
@@ -63,8 +64,8 @@
             // metroTile1
             // 
             this.metroTile1.ActiveControl = null;
-            this.metroTile1.Location = new System.Drawing.Point(433, 540);
-            this.metroTile1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroTile1.Location = new System.Drawing.Point(295, 539);
+            this.metroTile1.Margin = new System.Windows.Forms.Padding(4);
             this.metroTile1.Name = "metroTile1";
             this.metroTile1.Size = new System.Drawing.Size(197, 58);
             this.metroTile1.TabIndex = 0;
@@ -114,7 +115,7 @@
             this.gridRecherche.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.gridRecherche.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.gridRecherche.Location = new System.Drawing.Point(31, 286);
-            this.gridRecherche.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridRecherche.Margin = new System.Windows.Forms.Padding(4);
             this.gridRecherche.Name = "gridRecherche";
             this.gridRecherche.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -131,16 +132,63 @@
             this.gridRecherche.TabIndex = 1;
             this.gridRecherche.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.metroGrid1_CellContentClick);
             // 
+            // Siret
+            // 
+            this.Siret.HeaderText = "Siret";
+            this.Siret.Name = "Siret";
+            this.Siret.Visible = false;
+            // 
+            // Entreprise
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Entreprise.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Entreprise.HeaderText = "Entreprise";
+            this.Entreprise.Name = "Entreprise";
+            // 
+            // Voir
+            // 
+            this.Voir.HeaderText = "Voir";
+            this.Voir.Image = global::SharPool.Properties.Resources.tab_afficher;
+            this.Voir.Name = "Voir";
+            this.Voir.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Modifier
+            // 
+            this.Modifier.HeaderText = "Modifier";
+            this.Modifier.Image = global::SharPool.Properties.Resources.tab_modifier;
+            this.Modifier.Name = "Modifier";
+            this.Modifier.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Ajouter
+            // 
+            this.Ajouter.HeaderText = "Ajouter";
+            this.Ajouter.Image = global::SharPool.Properties.Resources.tab_ajouter;
+            this.Ajouter.Name = "Ajouter";
+            this.Ajouter.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Supprimé
+            // 
+            this.Supprimé.HeaderText = "Supprimé";
+            this.Supprimé.Image = global::SharPool.Properties.Resources.tab_supprimer;
+            this.Supprimé.Name = "Supprimé";
+            this.Supprimé.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // idEntreprise
+            // 
+            this.idEntreprise.HeaderText = "idEntreprise";
+            this.idEntreprise.Name = "idEntreprise";
+            this.idEntreprise.Visible = false;
+            // 
             // tbx_rechercher
             // 
             // 
             // 
             // 
             this.tbx_rechercher.CustomButton.Image = null;
-            this.tbx_rechercher.CustomButton.Location = new System.Drawing.Point(1260, 1);
-            this.tbx_rechercher.CustomButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbx_rechercher.CustomButton.Location = new System.Drawing.Point(945, 1);
+            this.tbx_rechercher.CustomButton.Margin = new System.Windows.Forms.Padding(4);
             this.tbx_rechercher.CustomButton.Name = "";
-            this.tbx_rechercher.CustomButton.Size = new System.Drawing.Size(55, 50);
+            this.tbx_rechercher.CustomButton.Size = new System.Drawing.Size(41, 41);
             this.tbx_rechercher.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.tbx_rechercher.CustomButton.TabIndex = 1;
             this.tbx_rechercher.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -149,7 +197,7 @@
             this.tbx_rechercher.Lines = new string[] {
         "Recherche"};
             this.tbx_rechercher.Location = new System.Drawing.Point(32, 209);
-            this.tbx_rechercher.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbx_rechercher.Margin = new System.Windows.Forms.Padding(4);
             this.tbx_rechercher.MaxLength = 32767;
             this.tbx_rechercher.Name = "tbx_rechercher";
             this.tbx_rechercher.PasswordChar = '\0';
@@ -169,7 +217,7 @@
             // 
             this.bnt_rechercher.ActiveControl = null;
             this.bnt_rechercher.Location = new System.Drawing.Point(904, 209);
-            this.bnt_rechercher.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bnt_rechercher.Margin = new System.Windows.Forms.Padding(4);
             this.bnt_rechercher.Name = "bnt_rechercher";
             this.bnt_rechercher.Size = new System.Drawing.Size(115, 43);
             this.bnt_rechercher.TabIndex = 4;
@@ -182,7 +230,7 @@
             // 
             this.metroTile2.ActiveControl = null;
             this.metroTile2.Location = new System.Drawing.Point(773, 124);
-            this.metroTile2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroTile2.Margin = new System.Windows.Forms.Padding(4);
             this.metroTile2.Name = "metroTile2";
             this.metroTile2.Size = new System.Drawing.Size(245, 53);
             this.metroTile2.TabIndex = 5;
@@ -239,72 +287,40 @@
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(31, 32);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(145, 127);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
-            // Siret
+            // metroTile3
             // 
-            this.Siret.HeaderText = "Siret";
-            this.Siret.Name = "Siret";
-            this.Siret.Visible = false;
-            // 
-            // Entreprise
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Entreprise.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Entreprise.HeaderText = "Entreprise";
-            this.Entreprise.Name = "Entreprise";
-            // 
-            // Voir
-            // 
-            this.Voir.HeaderText = "Voir";
-            this.Voir.Image = global::SharPool.Properties.Resources.tab_afficher;
-            this.Voir.Name = "Voir";
-            this.Voir.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Modifier
-            // 
-            this.Modifier.HeaderText = "Modifier";
-            this.Modifier.Image = global::SharPool.Properties.Resources.tab_modifier;
-            this.Modifier.Name = "Modifier";
-            this.Modifier.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Ajouter
-            // 
-            this.Ajouter.HeaderText = "Ajouter";
-            this.Ajouter.Image = global::SharPool.Properties.Resources.tab_ajouter;
-            this.Ajouter.Name = "Ajouter";
-            this.Ajouter.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Supprimé
-            // 
-            this.Supprimé.HeaderText = "Supprimé";
-            this.Supprimé.Image = global::SharPool.Properties.Resources.tab_supprimer;
-            this.Supprimé.Name = "Supprimé";
-            this.Supprimé.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // idEntreprise
-            // 
-            this.idEntreprise.HeaderText = "idEntreprise";
-            this.idEntreprise.Name = "idEntreprise";
-            this.idEntreprise.Visible = false;
+            this.metroTile3.ActiveControl = null;
+            this.metroTile3.Location = new System.Drawing.Point(579, 539);
+            this.metroTile3.Margin = new System.Windows.Forms.Padding(4);
+            this.metroTile3.Name = "metroTile3";
+            this.metroTile3.Size = new System.Drawing.Size(197, 58);
+            this.metroTile3.TabIndex = 6;
+            this.metroTile3.Text = "Synchronisation";
+            this.metroTile3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.metroTile3.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.metroTile3.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+            this.metroTile3.UseSelectable = true;
             // 
             // Accueil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1049, 626);
+            this.Controls.Add(this.metroTile3);
             this.Controls.Add(this.metroTile2);
             this.Controls.Add(this.bnt_rechercher);
             this.Controls.Add(this.tbx_rechercher);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.gridRecherche);
             this.Controls.Add(this.metroTile1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Accueil";
             this.Padding = new System.Windows.Forms.Padding(27, 74, 27, 25);
             this.Text = "Recherche entreprise";
@@ -340,5 +356,6 @@
         private System.Windows.Forms.DataGridViewImageColumn Ajouter;
         private System.Windows.Forms.DataGridViewImageColumn Supprimé;
         private System.Windows.Forms.DataGridViewTextBoxColumn idEntreprise;
+        private MetroFramework.Controls.MetroTile metroTile3;
     }
 }

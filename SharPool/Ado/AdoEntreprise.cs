@@ -41,7 +41,7 @@ namespace SharPool.Ado
             }
             public static Entreprise readOne(int unId)
             {
-                Entreprise uneEntreprise = null;
+                Entreprise uneEntreprise;
                 open("App");
 
                 MySqlCommand cmd = new MySqlCommand();
