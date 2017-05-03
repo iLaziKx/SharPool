@@ -14,9 +14,11 @@ namespace SharPool.Pages
 {
     public partial class AjoutContrat : MetroFramework.Forms.MetroForm
     {
-        public AjoutContrat()
+        Entreprise laEntreprise;
+        public AjoutContrat(string idEntreprise)
         {
             InitializeComponent();
+            laEntreprise = AdoEntreprise.readOne(Convert.ToInt32(idEntreprise));
         }
 
         private void metroLink1_Click(object sender, EventArgs e)
@@ -29,19 +31,19 @@ namespace SharPool.Pages
         private void btnValider_Click(object sender, EventArgs e)
         {
             int satisfaction;
-            if (this.chkPasSatisfait.Checked)
+            if (this.pasSatisfait.Checked)
             {
                 satisfaction = 0;
             }
-            else if (this.chkPasSatisfait.Checked)
+            else if (this.peuSatisfait.Checked)
             {
                 satisfaction = 1;
             }
-            else if (this.chkSatisfait.Checked)
+            else if (this.satisfait.Checked)
             {
                 satisfaction = 2;
             }
-            else if (this.chkTresSatisfait.Checked)
+            else if (this.tresSatisfait.Checked)
             {
                 satisfaction = 3;
             }
@@ -50,6 +52,12 @@ namespace SharPool.Pages
                 satisfaction = 0;
             }
 
+            Contrat cont = new Contrat(Convert.ToDateTime(dteDebut), Convert.ToDateTime(dteFin), satisfaction, dPoste.Text, tbxNomTuteur.Text, tbxTelTuteur.Text, tbxMailTuteur.Text, tbxNomApprenti.Text, tbxPrenomApprenti.Text, false, 1, laEntreprise.IdEntreprise, 1);
+            AdoContrat.create(cont, "App");
+            Accueil accueil = new Accueil();
+            accueil.Show();
+            this.Close();
+            
             // Contrat unContrat = new Contrat(0, this.dteDebut.Value, this.dteFin.Value, satisfaction, this.tbxCommentaire.Text, this.tbxNomTuteur, tbxTelTuteur, this.tbxMailTuteur, this.tbxNomApprenti, this.tbxPrenomApprenti, 0, 1, int idEntreprise, int idPromotion);
             // AdoContrat.create(unContrat, "App");
         }

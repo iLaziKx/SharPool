@@ -61,7 +61,7 @@ namespace SharPool
             }
             else if (e.ColumnIndex == senderGrid.Columns[4].Index && e.RowIndex >= 0)
             {
-                AjoutContrat ajoutContrat = new AjoutContrat();
+                AjoutContrat ajoutContrat = new AjoutContrat(gridRecherche.Rows[e.RowIndex].Cells["idEntreprise"].Value.ToString());
                 ajoutContrat.Show();
                 this.Close();
             }
@@ -81,6 +81,7 @@ namespace SharPool
             gridRecherche.AutoGenerateColumns = false;
             gridRecherche.Columns[0].DataPropertyName = "numeroSiret";
             gridRecherche.Columns[1].DataPropertyName = "nomEntreprise";
+            gridRecherche.Columns["idEntreprise"].DataPropertyName = "idEntreprise";
             gridRecherche.DataSource = DataTableForFill;
         }
 

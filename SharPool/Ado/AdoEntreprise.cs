@@ -46,7 +46,7 @@ namespace SharPool.Ado
 
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
-                cmd.CommandText = "SELECT * FROM Entreprise WHERE id= " + unId;
+                cmd.CommandText = "SELECT * FROM entreprise WHERE idEntreprise= " + unId;
 
                 MySqlDataReader res = cmd.ExecuteReader();
                 res.Read();

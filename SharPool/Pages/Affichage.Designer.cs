@@ -246,6 +246,7 @@
             this.siretBox.UseSelectable = true;
             this.siretBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.siretBox.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.siretBox.Click += new System.EventHandler(this.siretBox_Click);
             // 
             // cpBox
             // 

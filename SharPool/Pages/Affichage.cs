@@ -38,5 +38,10 @@ namespace SharPool
         {
 
         }
+
+        private void siretBox_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
