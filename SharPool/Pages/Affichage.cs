@@ -9,15 +9,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SharPool.Classes;
+using SharPool.Ado;
 
 namespace SharPool
 {
     public partial class Affichage : MetroFramework.Forms.MetroForm
     {
-        public Affichage()
+        Entreprise laEntreprise;
+        public Affichage(string idEntreprise)
         {
             InitializeComponent();
-
+            laEntreprise = AdoEntreprise.readOne(Convert.ToInt32(idEntreprise));
         }
 
         private void metroLink1_Click(object sender, EventArgs e)

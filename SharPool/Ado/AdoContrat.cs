@@ -56,7 +56,7 @@ namespace SharPool.Ado
 
             MySqlDataReader res = cmd.ExecuteReader();
             res.Read();
-            unContrat = new Contrat((DateTime)res["dateDebut"], (DateTime)res["dateFin"], (int)res["satisfaction"], (string)res["descriptionPoste"], (string)res["nomTuteur"], (string)res["numeroResponsable"], (string)res["mailTuteur"], (string)res["nomEleve"], (string)res["prenomEleve"], (bool)res["archivage"], (int)res["idType"], (int)res["idEntreprise"], (int)res["idPromotion"]);
+            unContrat = new Contrat((DateTime)res["dateDebut"], (DateTime)res["dateFin"], (string)res["satisfaction"], (string)res["descriptionPoste"], (string)res["nomTuteur"], (string)res["numeroResponsable"], (string)res["mailTuteur"], (string)res["nomEleve"], (string)res["prenomEleve"], (bool)res["archivage"], (int)res["idType"], (int)res["idEntreprise"], (int)res["idPromotion"]);
 
             close();
             return unContrat;
@@ -74,17 +74,17 @@ namespace SharPool.Ado
             MySqlDataReader res = cmd.ExecuteReader();
             while (res.Read())
             {
-                lesContrats.Add(new Contrat((DateTime)res["dateDebut"], (DateTime)res["dateFin"], (int)res["satisfaction"], (string)res["descriptionPoste"], (string)res["nomTuteur"], (string)res["numeroResponsable"], (string)res["mailTuteur"], (string)res["nomEleve"], (string)res["prenomEleve"], (bool)res["archivage"], (int)res["idType"], (int)res["idEntreprise"], (int)res["idPromotion"]));
+                lesContrats.Add(new Contrat((DateTime)res["dateDebut"], (DateTime)res["dateFin"], (string)res["satisfaction"], (string)res["descriptionPoste"], (string)res["nomTuteur"], (string)res["numeroResponsable"], (string)res["mailTuteur"], (string)res["nomEleve"], (string)res["prenomEleve"], (bool)res["archivage"], (int)res["idType"], (int)res["idEntreprise"], (int)res["idPromotion"]));
             }
             close();
             return lesContrats;
 
         }
 
-        public static List<Contrat> readAllWs(string connect)
+        public static List<Contrat> readAllWs()
         {
             List<Contrat> lesContrats = new List<Contrat>();
-            open(connect);
+            open("App");
 
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = conn;
@@ -93,7 +93,7 @@ namespace SharPool.Ado
             MySqlDataReader res = cmd.ExecuteReader();
             while (res.Read())
             {
-                lesContrats.Add(new Contrat((DateTime)res["dateDebut"], (DateTime)res["dateFin"], (int)res["satisfaction"], (string)res["descriptionPoste"], (string)res["nomTuteur"], (string)res["numeroResponsable"], (string)res["mailTuteur"], (string)res["nomEleve"], (string)res["prenomEleve"], (bool)res["archivage"], (int)res["idType"], (int)res["idEntreprise"], (int)res["idPromotion"]));
+                lesContrats.Add(new Contrat((DateTime)res["dateDebut"], (DateTime)res["dateFin"], (string)res["satisfaction"], (string)res["descriptionPoste"], (string)res["nomTuteur"], (string)res["numeroResponsable"], (string)res["mailTuteur"], (string)res["nomEleve"], (string)res["prenomEleve"], (bool)res["archivage"], (int)res["typeContrat_idType"], (int)res["entreprise_idEntreprise"], (int)res["promotion_idPromotion"]));
             }
             close();
             return lesContrats;
@@ -164,17 +164,17 @@ namespace SharPool.Ado
         {
             try
             {
-                List<Contrat> lesContrats = readAllWs("App");
-
-                MySqlCommand cmd = new MySqlCommand();
-                cmd.Connection = conn;
+                List<Contrat> lesContrats = readAllWs();
+                
                 foreach (Contrat unContrat in lesContrats)
                 {
                     open("App");
-                    cmd.CommandText = "UPDATE Contrat SET archivage=@archivage WHERE idContrat=@id";
+                    MySqlCommand cmd = new MySqlCommand();
+                    cmd.Connection = conn;
+                    cmd.CommandText = "UPDATE Contrat SET archivage=@archivage WHERE idContrat=@idContrat";
                     cmd.Prepare();
-                    cmd.Parameters.AddWithValue("@archivage", 1);
-                    cmd.Parameters.AddWithValue("@id", unContrat.IdContrat);
+                    cmd.Parameters.AddWithValue("@archivage", true);
+                    cmd.Parameters.AddWithValue("@idContrat", unContrat.IdContrat);
                     cmd.ExecuteNonQuery();
                     close();
                 }
