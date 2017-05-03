@@ -30,6 +30,7 @@ namespace SharPool.Classes
         }
         public Entreprise(string numeroSiret, string nomEntreprise, string adresse, string codePostal, string ville, string commentaire, bool entrepriseCreer)
         {
+            this.idEntreprise = 0;
             this.numeroSiret = numeroSiret;
             this.nomEntreprise = nomEntreprise;
             this.adresse = adresse;

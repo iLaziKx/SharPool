@@ -41,7 +41,7 @@ namespace SharPool.Ado
             }
             public static Entreprise readOne(int unId)
             {
-                Entreprise uneEntreprise;
+                Entreprise uneEntreprise = null;
                 open("App");
 
                 MySqlCommand cmd = new MySqlCommand();
@@ -49,9 +49,10 @@ namespace SharPool.Ado
                 cmd.CommandText = "SELECT * FROM entreprise WHERE idEntreprise= " + unId;
 
                 MySqlDataReader res = cmd.ExecuteReader();
-                
-                uneEntreprise = new Entreprise((int)res["idEntreprise"],(string)res["numeroSiret"], (string)res["nomEntreprise"], (string)res["adresse"], (string)res["codePostal"], (string)res["ville"],  (string)res["commentaire"], (bool)res["entrepriseCreer"]);
-
+            
+                res.Read();
+                uneEntreprise = new Entreprise((int)res["idEntreprise"], (string)res["numeroSiret"], (string)res["nomEntreprise"], (string)res["adresse"], (string)res["codePostal"], (string)res["ville"], (string)res["commentaire"], (bool)res["entrepriseCreer"]);
+            
                 close();
                 return uneEntreprise;
 
@@ -76,7 +77,7 @@ namespace SharPool.Ado
 
             }
 
-        public static List<Entreprise> readAllWs(string connect)
+        public static List<Entreprise> readAllWs()
         {
             List<Entreprise> lesEntreprises = new List<Entreprise>();
             open("App");
@@ -152,8 +153,7 @@ namespace SharPool.Ado
         {
             try
             {
-                List<Entreprise> lesEntreprises = readAllWs("App");
-
+                List<Entreprise> lesEntreprises = readAllWs();
                 
                 foreach (Entreprise uneEntreprise in lesEntreprises)
                 {
