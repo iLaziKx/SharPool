@@ -127,17 +127,16 @@ namespace SharPool.Ado
 
                     MySqlCommand cmd = new MySqlCommand();
                     cmd.Connection = conn;
-                    cmd.CommandText = "UPDATE entreprise SET numeroSiret=@numeroSiret,nomEntreprise=@nomEntreprise,adresse=@adresse,codePostal=@codePostal,ville=@ville,commentaire=@commentaire,entrepriseCreer=@entrepriseCreer WHERE idEntreprise=@identreprise";
+                    cmd.CommandText = "UPDATE entreprise SET numeroSiret=@numeroSiret,nomEntreprise=@nomEntreprise,adresse=@adresse,codePostal=@codePostal,ville=@ville,commentaire=@commentaire WHERE idEntreprise=@idEntreprise";
                     cmd.Prepare();
-
-                    cmd.Parameters.AddWithValue("@idEntreprise", uneEntreprise.IdEntreprise);
+                
                     cmd.Parameters.AddWithValue("@numeroSiret", uneEntreprise.NumeroSiret);
                     cmd.Parameters.AddWithValue("@nomEntreprise", uneEntreprise.NomEntreprise);
                     cmd.Parameters.AddWithValue("@adresse", uneEntreprise.Adresse);
                     cmd.Parameters.AddWithValue("@codePostal", uneEntreprise.CodePostal);
                     cmd.Parameters.AddWithValue("@ville", uneEntreprise.Ville);
                     cmd.Parameters.AddWithValue("@commentaire", uneEntreprise.Commentaire);
-                    cmd.Parameters.AddWithValue("@entrepriseCreer", uneEntreprise.EntrepriseCreer);
+                    cmd.Parameters.AddWithValue("@idEntreprise", uneEntreprise.IdEntreprise);
 
                     cmd.ExecuteNonQuery();
                     close();

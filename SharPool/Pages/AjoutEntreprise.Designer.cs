@@ -297,7 +297,7 @@
             // ajoutBtn
             // 
             this.ajoutBtn.ActiveControl = null;
-            this.ajoutBtn.Location = new System.Drawing.Point(423, 432);
+            this.ajoutBtn.Location = new System.Drawing.Point(429, 447);
             this.ajoutBtn.Margin = new System.Windows.Forms.Padding(4);
             this.ajoutBtn.Name = "ajoutBtn";
             this.ajoutBtn.Size = new System.Drawing.Size(245, 53);

@@ -55,7 +55,7 @@ namespace SharPool
             }                
             else if (e.ColumnIndex == senderGrid.Columns[3].Index && e.RowIndex >= 0)
             {
-                Modifier modifier = new Modifier();
+                Modifier modifier = new Modifier(gridRecherche.Rows[e.RowIndex].Cells["idEntreprise"].Value.ToString());
                 modifier.Show();
                 this.Close();
             }
