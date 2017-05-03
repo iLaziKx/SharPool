@@ -49,7 +49,7 @@ namespace SharPool
 
             if (e.ColumnIndex == senderGrid.Columns[2].Index && e.RowIndex >= 0)
             {
-                Affichage affichage = new Affichage();
+                Affichage affichage = new Affichage(gridRecherche.Rows[e.RowIndex].Cells["idEntreprise"].Value.ToString());
                 affichage.Show();
                 this.Close();
             }                

@@ -30,29 +30,29 @@ namespace SharPool.Pages
 
         private void btnValider_Click(object sender, EventArgs e)
         {
-            int satisfaction;
+            string satisfaction;
             if (this.pasSatisfait.Checked)
             {
-                satisfaction = 0;
+                satisfaction = "0";
             }
             else if (this.peuSatisfait.Checked)
             {
-                satisfaction = 1;
+                satisfaction = "1";
             }
             else if (this.satisfait.Checked)
             {
-                satisfaction = 2;
+                satisfaction = "2";
             }
             else if (this.tresSatisfait.Checked)
             {
-                satisfaction = 3;
+                satisfaction = "3";
             }
             else
             {
-                satisfaction = 0;
+                satisfaction = "0";
             }
 
-            Contrat cont = new Contrat(Convert.ToDateTime(dteDebut), Convert.ToDateTime(dteFin), satisfaction, dPoste.Text, tbxNomTuteur.Text, tbxTelTuteur.Text, tbxMailTuteur.Text, tbxNomApprenti.Text, tbxPrenomApprenti.Text, false, 1, laEntreprise.IdEntreprise, 1);
+            Contrat cont = new Contrat(this.dteDebut.Value, this.dteFin.Value, satisfaction, dPoste.Text, tbxNomTuteur.Text, tbxTelTuteur.Text, tbxMailTuteur.Text, tbxNomApprenti.Text, tbxPrenomApprenti.Text, false, 1, laEntreprise.IdEntreprise, 1);
             AdoContrat.create(cont, "App");
             Accueil accueil = new Accueil();
             accueil.Show();

@@ -19,7 +19,7 @@ namespace SharPool.Ado
 
                     MySqlCommand cmd = new MySqlCommand();
                     cmd.Connection = conn;
-                    cmd.CommandText = "INSERT INTO Entreprise (numeroSiret,nomEntreprise,adresse,codePostal,ville,commentaire,entrepriseCreer) VALUES (@numeroSiret,@nomEntreprise,@adresse,@codePostal,@ville,@commentaire,@entrepriseCreer)";
+                    cmd.CommandText = "INSERT INTO entreprise (numeroSiret,nomEntreprise,adresse,codePostal,ville,commentaire,entrepriseCreer) VALUES (@numeroSiret,@nomEntreprise,@adresse,@codePostal,@ville,@commentaire,@entrepriseCreer)";
                     cmd.Prepare();
 
                     cmd.Parameters.AddWithValue("@numeroSiret", uneEntreprise.NumeroSiret);
@@ -30,7 +30,7 @@ namespace SharPool.Ado
                     cmd.Parameters.AddWithValue("@commentaire", uneEntreprise.Commentaire);
                     cmd.Parameters.AddWithValue("@entrepriseCreer", uneEntreprise.EntrepriseCreer);
 
-                cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
                     close();
                 }
                 catch (MySqlException ex)
@@ -41,7 +41,7 @@ namespace SharPool.Ado
             }
             public static Entreprise readOne(int unId)
             {
-                Entreprise uneEntreprise;
+                Entreprise uneEntreprise = null;
                 open("App");
 
                 MySqlCommand cmd = new MySqlCommand();
@@ -49,9 +49,10 @@ namespace SharPool.Ado
                 cmd.CommandText = "SELECT * FROM entreprise WHERE idEntreprise= " + unId;
 
                 MySqlDataReader res = cmd.ExecuteReader();
-                
-                uneEntreprise = new Entreprise((int)res["idEntreprise"],(string)res["numeroSiret"], (string)res["nomEntreprise"], (string)res["adresse"], (string)res["ville"], (string)res["codePostal"], (string)res["commentaire"], (bool)res["entrepriseCreer"]);
-
+            
+                res.Read();
+                uneEntreprise = new Entreprise((int)res["idEntreprise"], (string)res["numeroSiret"], (string)res["nomEntreprise"], (string)res["adresse"], (string)res["codePostal"], (string)res["ville"], (string)res["commentaire"], (bool)res["entrepriseCreer"]);
+            
                 close();
                 return uneEntreprise;
 
@@ -63,32 +64,32 @@ namespace SharPool.Ado
 
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
-                cmd.CommandText = "SELECT * FROM Entreprise";
+                cmd.CommandText = "SELECT * FROM entreprise";
 
                 MySqlDataReader res = cmd.ExecuteReader();
                 while (res.Read())
                 {
                     
-                    lesEntreprise.Add(new Entreprise((int)res["idEntreprise"], (string)res["numeroSiret"], (string)res["nomEntreprise"], (string)res["adresse"], (string)res["ville"], (string)res["codePostal"], (string)res["commentaire"], (bool)res["entrepriseCreer"]));
-            }
-            close();
-            return lesEntreprise;
+                    lesEntreprise.Add(new Entreprise((int)res["idEntreprise"], (string)res["numeroSiret"], (string)res["nomEntreprise"], (string)res["adresse"], (string)res["codePostal"], (string)res["ville"], (string)res["commentaire"], (bool)res["entrepriseCreer"]));
+                }
+                close();
+                return lesEntreprise;
 
             }
 
-        public static List<Entreprise> readAllWs(string connect)
+        public static List<Entreprise> readAllWs()
         {
             List<Entreprise> lesEntreprises = new List<Entreprise>();
             open("App");
 
             MySqlCommand cmd = new MySqlCommand();
             cmd.Connection = conn;
-            cmd.CommandText = "SELECT * FROM Entreprise WHERE entrepriseCreer = 0";
+            cmd.CommandText = "SELECT * FROM entreprise WHERE entrepriseCreer = 0";
 
             MySqlDataReader res = cmd.ExecuteReader();
             while (res.Read())
             {
-                lesEntreprises.Add(new Entreprise((int)res["idEntreprise"], (string)res["numeroSiret"], (string)res["nomEntreprise"], (string)res["adresse"], (string)res["ville"], (string)res["codePostal"], (string)res["commentaire"], (bool)res["entrepriseCreer"]));
+                lesEntreprises.Add(new Entreprise((int)res["idEntreprise"], (string)res["numeroSiret"], (string)res["nomEntreprise"], (string)res["adresse"], (string)res["codePostal"], (string)res["ville"], (string)res["commentaire"], (bool)res["entrepriseCreer"]));
             }
             close();
             return lesEntreprises;
@@ -103,7 +104,7 @@ namespace SharPool.Ado
 
                     MySqlCommand cmd = new MySqlCommand();
                     cmd.Connection = conn;
-                    cmd.CommandText = "DELETE FROM Entreprise WHERE idEntreprise=@id";
+                    cmd.CommandText = "DELETE FROM entreprise WHERE idEntreprise=@id";
                     cmd.Prepare();
 
                     cmd.Parameters.AddWithValue("@id", unId);
@@ -126,7 +127,7 @@ namespace SharPool.Ado
 
                     MySqlCommand cmd = new MySqlCommand();
                     cmd.Connection = conn;
-                    cmd.CommandText = "UPDATE Entreprise SET numeroSiret=@numeroSiret,nomEntreprise=@nomEntreprise,adresse=@adresse,codePostal=@codePostal,ville=@ville,commentaire=@commentaire,entrepriseCreer=@entrepriseCreer WHERE idEntreprise=@identreprise";
+                    cmd.CommandText = "UPDATE entreprise SET numeroSiret=@numeroSiret,nomEntreprise=@nomEntreprise,adresse=@adresse,codePostal=@codePostal,ville=@ville,commentaire=@commentaire,entrepriseCreer=@entrepriseCreer WHERE idEntreprise=@identreprise";
                     cmd.Prepare();
 
                     cmd.Parameters.AddWithValue("@idEntreprise", uneEntreprise.IdEntreprise);
@@ -152,15 +153,14 @@ namespace SharPool.Ado
         {
             try
             {
-                List<Entreprise> lesEntreprises = readAllWs("App");
-
+                List<Entreprise> lesEntreprises = readAllWs();
                 
                 foreach (Entreprise uneEntreprise in lesEntreprises)
                 {
                     open("App");
                     MySqlCommand cmd = new MySqlCommand();
                     cmd.Connection = conn;
-                    cmd.CommandText = "UPDATE Entreprise SET entrepriseCreer=@entrepriseCreer WHERE idEntreprise=@idEntreprise";
+                    cmd.CommandText = "UPDATE entreprise SET entrepriseCreer=@entrepriseCreer WHERE idEntreprise=@idEntreprise";
                     cmd.Prepare();
                     cmd.Parameters.AddWithValue("@entrepriseCreer", true);
                     cmd.Parameters.AddWithValue("@idEntreprise", uneEntreprise.IdEntreprise);
@@ -189,7 +189,7 @@ namespace SharPool.Ado
                 open("App");
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
-                cmd.CommandText = "SELECT * FROM Entreprise";
+                cmd.CommandText = "SELECT * FROM entreprise";
 
                 MySqlDataReader res = cmd.ExecuteReader();
 
