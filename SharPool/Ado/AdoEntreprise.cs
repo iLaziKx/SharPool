@@ -71,8 +71,8 @@ namespace SharPool.Ado
                     
                     lesEntreprise.Add(new Entreprise((int)res["idEntreprise"], (string)res["numeroSiret"], (string)res["nomEntreprise"], (string)res["adresse"], (string)res["ville"], (string)res["codePostal"], (string)res["commentaire"], (bool)res["entrepriseCreer"]));
             }
-
-                return lesEntreprise;
+            close();
+            return lesEntreprise;
 
             }
 
@@ -88,10 +88,10 @@ namespace SharPool.Ado
             MySqlDataReader res = cmd.ExecuteReader();
             while (res.Read())
             {
-                
+                res.Read();
                 lesEntreprises.Add(new Entreprise((int)res["idEntreprise"], (string)res["numeroSiret"], (string)res["nomEntreprise"], (string)res["adresse"], (string)res["ville"], (string)res["codePostal"], (string)res["commentaire"], (bool)res["entrepriseCreer"]));
             }
-
+            close();
             return lesEntreprises;
 
         }
@@ -154,19 +154,19 @@ namespace SharPool.Ado
             try
             {
                 List<Entreprise> lesEntreprises = readAllWs("App");
+                open("App");
 
-                
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = conn;
                 foreach (Entreprise uneEntreprise in lesEntreprises)
                 {
-                    MySqlCommand cmd = new MySqlCommand();
-                    cmd.Connection = conn;
                     cmd.CommandText = "UPDATE Entreprise SET entrepriseCreer=@entrepriseCreer WHERE idEntreprise=@idEntreprise";
                     cmd.Prepare();
-                    cmd.Parameters.AddWithValue("@entrepriseCreer", 1);
                     cmd.Parameters.AddWithValue("@idEntreprise", uneEntreprise.IdEntreprise);
                     cmd.ExecuteNonQuery();
+                    close();
                 }
-                close();
+                
                 
                 foreach (Entreprise uneEntreprise in lesEntreprises)
                 {
