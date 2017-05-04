@@ -68,6 +68,12 @@ namespace SharPool
             else if (e.ColumnIndex == senderGrid.Columns[5].Index && e.RowIndex >= 0)
             {
                 DialogResult result = MetroMessageBox.Show(this,"Voulez-vous vraiment supprimé?" , "Confirmation", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    AdoEntreprise.delete(Convert.ToInt16(gridRecherche.Rows[e.RowIndex].Cells["idEntreprise"].Value.ToString()));
+                    refreshDTListeEntreprise();
+                    refreshGrid(dtListeEntreprise);
+                }
             }
         }
         private void refreshDTListeEntreprise()
