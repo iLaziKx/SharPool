@@ -202,8 +202,31 @@ namespace SharPool.Ado
 
                 return dtEntreprise;
             }
-
             return dtEntreprise;
         }
+
+        //public static bool verification()
+        //{
+        //    try
+        //    {
+        //        open("App");
+        //        MySqlCommand cmd = new MySqlCommand();
+        //        cmd.Connection = conn;
+        //        cmd.CommandText = "SELECT * FROM entreprise";
+
+        //        MySqlDataReader res = cmd.ExecuteReader();
+
+        //        dtEntreprise.Load(res);
+
+        //        close();
+        //    }
+        //    catch (MySqlException ex)
+        //    {
+        //        Console.WriteLine("Error: {0}", ex.ToString());
+
+        //        return dtEntreprise;
+        //    }
+        //    return dtEntreprise;
+        //}
     }
 }

@@ -14,10 +14,14 @@ namespace SharPool
 {
     public partial class Modifier : MetroFramework.Forms.MetroForm
     {
-        Entreprise laEntreprise;
+        int idEntreprise;
+
         public Modifier(string idEntreprise)
         {
             InitializeComponent();
+
+            this.idEntreprise = Convert.ToInt32(idEntreprise);
+            Entreprise laEntreprise;
             laEntreprise = AdoEntreprise.readOne(Convert.ToInt32(idEntreprise));
 
             siretBox.Text = laEntreprise.NumeroSiret;
@@ -42,7 +46,8 @@ namespace SharPool
 
         private void ValideBox_Click(object sender, EventArgs e)
         {
-            AdoEntreprise.update(laEntreprise);
+            Entreprise uneEntreprise = new Entreprise(Convert.ToInt32(idEntreprise),siretBox.Text, entBox.Text, adresseBox.Text, cpBox.Text, villeBox.Text, tbxCom.Text, false);
+            AdoEntreprise.update(uneEntreprise);
             Accueil accueil = new Accueil();
             accueil.Show();
             this.Close();

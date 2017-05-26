@@ -15,8 +15,8 @@ namespace SharPool.Ado
         {
             if (connection == "App")
             {
-                string cs = @"server=192.168.1.241;userid=sharpool;password=sio2alt;database=sharpoolapp";
-                //string cs = @"server=localhost;userid=root;password=;database=sharpoolapp";
+                //string cs = @"server=192.168.1.241;userid=sharpool;password=sio2alt;database=sharpoolapp";
+                string cs = @"server=localhost;userid=root;password=;database=sharpoolapp";
                 try
                 {
                     conn = new MySqlConnection(cs);
@@ -33,8 +33,8 @@ namespace SharPool.Ado
             }
             else if (connection == "Web")
             {
-                string cs = @"server=192.168.1.241;userid=sharpool;password=sio2alt;database=sharpoolweb";
-                //string cs = @"server=localhost;userid=root;password=;database=sharpoolweb";
+                //string cs = @"server=192.168.1.241;userid=sharpool;password=sio2alt;database=sharpoolweb";
+                string cs = @"server=localhost;userid=root;password=;database=sharpoolweb";
                 try
                 {
                     conn = new MySqlConnection(cs);
